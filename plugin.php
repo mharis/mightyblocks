@@ -1,10 +1,10 @@
 <?php
 /**
- * Plugin Name: mightyblocks — CGB Gutenberg Block Plugin
- * Plugin URI: https://github.com/ahmadawais/create-guten-block/
+ * Plugin Name: Mighty Blocks
+ * Plugin URI:
  * Description: mightyblocks — is a Gutenberg plugin created via create-guten-block.
- * Author: mrahmadawais, maedahbatool
- * Author URI: https://AhmadAwais.com/
+ * Author: mharis
+ * Author URI: 
  * Version: 1.0.0
  * License: GPL2+
  * License URI: http://www.gnu.org/licenses/gpl-2.0.txt
