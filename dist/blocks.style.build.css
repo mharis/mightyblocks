@@ -9,10 +9,9 @@
  *
  * CSS for both Frontend+Backend.
  */
-.wp-block-cgb-block-mightyblocks {
-  background: orangered;
-  border: 0.2rem solid #292929;
-  color: #292929;
-  margin: 0 auto;
-  max-width: 740px;
-  padding: 2rem; }
+.wp-block-mightyblocks-block-notice {
+  border-style: solid;
+  padding: 12px 20px; }
+
+.wp-block-mightyblocks-block-notice p:last-child {
+  margin-bottom: 0; }

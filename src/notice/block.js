@@ -1,5 +1,5 @@
 /**
- * BLOCK: mightyblocks
+ * BLOCK: Notice
  *
  * Registering a basic block with Gutenberg.
  * Simple block, renders and saves the same content without any interactivity.
@@ -15,6 +15,9 @@ const {
 	RichText,
 	InspectorControls,
 	ColorPalette,
+	AlignmentToolbar,
+	BlockControls,
+	BlockAlignmentToolbar,
 } = wp.blocks; // Import registerBlockType() from wp.blocks
 
 const {
@@ -37,10 +40,9 @@ const {
  *                             registered; otherwise `undefined`.
  */
 registerBlockType( 'mightyblocks/block-notice', {
-	// Block name. Block names must be string that contains a namespace prefix. Example: my-plugin/my-custom-block.
-	title: __( 'Notice' ), // Block title.
-	icon: 'shield', // Block icon from Dashicons → https://developer.wordpress.org/resource/dashicons/.
-	category: 'common', // Block category — Group blocks together based on common traits E.g. common, formatting, layout widgets, embed.
+	title: __( 'Notice' ),
+	icon: 'shield',
+	category: 'common',
 	keywords: [
 		__( 'mightyblocks' ),
 		__( 'notice' ),
@@ -50,34 +52,59 @@ registerBlockType( 'mightyblocks/block-notice', {
 	attributes: {
         content: {
             type: 'array',
+            selector: '.wp-block-mightyblocks-notice-text',
             source: 'children',
-            selector: 'p',
         },
 		type: {
 			type: 'string',
 			default: 'general'
 		},
+		backgroundColor: {
+			type: 'string',
+			default: mightyblocks['notice-bg-color']
+		},
+		borderColor: {
+			type: 'string',
+			default: mightyblocks['notice-border-color']
+		},
+		borderSize: {
+			type: 'string',
+			default: mightyblocks['notice-border-size']
+		},
+		fontColor: {
+			type: 'string',
+			default: mightyblocks['notice-font-color']
+		},
 		fontSize: {
 			type: 'string',
-			default: '14'
+			default: mightyblocks['notice-font-size']
+		},
+		dismissable: {
+			type: 'boolean',
+			default: true
+		},
+		alignment: {
+			type: 'string',
 		},
     },
 
 	edit: function( { focus, attributes, className, setAttributes } ) {
 		const {
 			content,
-			isSelected,
 			type,
-			fontSize
+			backgroundColor,
+			borderColor,
+			borderSize,
+			fontColor,
+			fontSize,
+			dismissable,
+			alignment
 		} = attributes;
-
-		function onChangeContent( newContent ) {
-            setAttributes( { content: newContent } );
-        }
 
 		const inspectorControls = focus && (
 			<InspectorControls>
 				<br />
+
 				<SelectControl
 					label={ __( 'Preset Colors' ) }
 					description={ __( 'Preset colors. This will reset the styling options below. ' ) }
@@ -102,8 +129,79 @@ registerBlockType( 'mightyblocks/block-notice', {
 						]
 					}
 					value={ type }
-					onChange={ ( value ) => setAttributes( { type: value } ) }
+					onChange={
+						( value ) => {
+							if ( value === 'error' ) {
+								setAttributes( { backgroundColor: '#EFCDCD' } )
+								setAttributes( { borderColor: '#970008' } )
+								setAttributes( { fontColor: '#970008' } )
+							} else if ( value === 'success' ) {
+								setAttributes( { backgroundColor: '#C7EBB5' } )
+								setAttributes( { borderColor: '#125A12' } )
+								setAttributes( { fontColor: '#125A12' } )
+							} else if ( value === 'notice' )  {
+								setAttributes( { backgroundColor: '#FFFBD2' } )
+								setAttributes( { borderColor: '#d9b917' } )
+								setAttributes( { fontColor: '#C4A700' } )
+							} else {
+								setAttributes( { backgroundColor: '#eeeeee' } )
+								setAttributes( { borderColor: '#dddddd' } )
+								setAttributes( { fontColor: '#222222' } )
+							}
+
+							setAttributes( { type: value } )
+						}
+					}
 				/>
+
+				<PanelColor
+					title={ __( 'Background Color' ) }
+					colorValue={ backgroundColor }
+					initialOpen={ false }
+				>
+					<ColorPalette
+						label={ __( 'Background Color' ) }
+						value={ backgroundColor }
+						onChange={ ( value ) => setAttributes( { backgroundColor: value } ) }
+						colors={[]}
+					/>
+				</PanelColor>
+
+				<PanelColor
+					title={ __( 'Border Color' ) }
+					colorValue={ borderColor }
+					initialOpen={ false }
+				>
+					<ColorPalette
+						label={ __( 'Border Color' ) }
+						value={ borderColor }
+						onChange={ ( value ) => setAttributes( { borderColor: value } ) }
+						colors={[]}
+					/>
+				</PanelColor>
+
+				<RangeControl
+					label={ __( 'Border Size' ) }
+					value={ borderSize }
+					onChange={ ( value ) => setAttributes( { borderSize: value } ) }
+					min={ 1 }
+					max={ 24 }
+					step={ 1 }
+				/>
+
+				<PanelColor
+					title={ __( 'Font Color' ) }
+					colorValue={ fontColor }
+					initialOpen={ false }
+				>
+					<ColorPalette
+						label={ __( 'Font Color' ) }
+						value={ fontColor }
+						onChange={ ( value ) => setAttributes( { fontColor: value } ) }
+						colors={[]}
+					/>
+				</PanelColor>
+
 				<RangeControl
 					label={ __( 'Font Size' ) }
 					value={ fontSize }
@@ -112,28 +210,87 @@ registerBlockType( 'mightyblocks/block-notice', {
 					max={ 24 }
 					step={ 1 }
 				/>
+
+				<ToggleControl
+					label={ __( 'Dismissable Notice?' ) }
+					help={ ( checked ) => checked ? __( 'This notice is dismissable.' ) : __( 'This notice is NOT dismissable.' ) }
+					checked={ dismissable }
+					onChange={ ( value ) => setAttributes( { dismissable: value } ) }
+				/>
 			</InspectorControls>
 		);
 
+		const alignmentToolbar = focus && (
+			<BlockControls>
+				<AlignmentToolbar
+					value={ alignment }
+					onChange={ ( value ) => setAttributes( { alignment: value } ) }
+				/>
+			</BlockControls>
+		);
+
         return [
+			alignmentToolbar,
 			inspectorControls,
-			<div className={ className }>
+			<div
+				className={ className }
+				style={ {
+					backgroundColor,
+					borderColor,
+					borderWidth: borderSize + 'px'
+				} }
+			>
 	            <RichText
-	                tagName="p"
-	                onChange={ onChangeContent }
+					className='wp-block-mightyblocks-notice-text'
+					tagName='div'
+					multiline='p'
+	                onChange={ ( value ) => setAttributes( { content: value } ) }
 	                value={ content }
-	                isSelected={ isSelected }
+	                isSelected={ focus }
+					placeholder={ __( 'Add notice text' ) }
+					formattingControls={ [ 'bold', 'italic', 'strikethrough', 'link' ] }
+					keepPlaceholderOnFocus
+					style={ {
+						fontSize: fontSize + 'px',
+						color: fontColor,
+						textAlign: alignment,
+					} }
 	            />
 			</div>
         ];
 	},
 
 	save( { attributes, className } ) {
-		const { content } = attributes;
+		const {
+			content,
+			backgroundColor,
+			borderColor,
+			borderSize,
+			fontColor,
+			fontSize,
+			dismissable,
+			alignment
+		} = attributes;
 
 		return (
-			<div className={ className }>
-				<p>{ content }</p>
+			<div
+				className={ className }
+				style={ {
+					backgroundColor,
+					borderColor,
+					borderWidth: borderSize + 'px'
+				} }
+			>
+				<div
+					className='wp-block-mightyblocks-notice-text'
+					style={ {
+						fontSize: fontSize + 'px',
+						color: fontColor,
+						textAlign: alignment
+					} }
+				>
+					{ content }
+				</div>
 			</div>
 		)
 	},

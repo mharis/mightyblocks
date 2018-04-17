@@ -116,33 +116,36 @@ Redux::setSection( $opt_name, array(
     'fields'           => array(
         array(
             'id'       => 'notice-bg-color',
-            'type'     => 'color_rgba',
+            'type'     => 'color',
             'title'    => __( 'Background Color', 'mightyblocks' ),
             'subtitle' => __( 'Set the default background color for the notice block.', 'mightyblocks' ),
-            'default'  => array(
-                'color' => '#eee',
-                'alpha' => '1'
-            ),
+            'default'  => '#eeeeee',
         ),
         array(
             'id'       => 'notice-border-color',
-            'type'     => 'color_rgba',
+            'type'     => 'color',
             'title'    => __( 'Border Color', 'mightyblocks' ),
-            'subtitle' => __( 'Set the border color for the notice block.', 'mightyblocks' ),
-            'default'  => array(
-                'color' => '#ddd',
-                'alpha' => '1'
-            ),
+            'subtitle' => __( 'Set the border color for the notice block. (In Pixels)', 'mightyblocks' ),
+            'default'  => '#dddddd',
+        ),
+        array(
+            'id'       => 'notice-border-size',
+            'type'     => 'slider',
+            'title'    => __( 'Border Size', 'mightyblocks' ),
+            'subtitle' => __( 'Set the border size for the notice block.', 'mightyblocks' ),
+            'default'  => 1,
+            'min'      => 1,
+            'step'     => 1,
+            'max'      => 24,
+            'resolution'    => 1,
+            'display_value' => 'text'
         ),
         array(
             'id'       => 'notice-font-color',
-            'type'     => 'color_rgba',
+            'type'     => 'color',
             'title'    => __( 'Font Color', 'mightyblocks' ),
-            'subtitle' => __( 'Set the font color for the notice block.', 'mightyblocks' ),
-            'default'  => array(
-                'color' => '#222',
-                'alpha' => '1'
-            ),
+            'subtitle' => __( 'Set the font color for the notice block. (In Pixels)', 'mightyblocks' ),
+            'default'  => '#222222',
         ),
         array(
             'id'       => 'notice-font-size',

@@ -51,6 +51,12 @@ function mightyblocks_cgb_editor_assets() {
 		// filemtime( plugin_dir_path( __FILE__ ) . 'block.js' ) // Version: filemtime — Gets file modification time.
 	);
 
+	wp_localize_script(
+		'mightyblocks-cgb-block-js',
+		'mightyblocks',
+		get_option('mightyblocks')
+	);
+
 	// Styles.
 	wp_enqueue_style(
 		'mightyblocks-cgb-block-editor-css', // Handle.

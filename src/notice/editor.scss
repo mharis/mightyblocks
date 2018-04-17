@@ -6,7 +6,9 @@
  */
 
 .wp-block-mightyblocks-block-notice {
-  background: $green;
-  border: 0.2rem solid $black;
-  color: $black;
+  padding: 12px 20px;
+}
+
+.wp-block-mightyblocks-block-notice .mce-content-body p:last-child {
+    margin-bottom: 0;
 }
