@@ -7,8 +7,24 @@
 .wp-block-mightyblocks-block-notice  {
     border-style: solid;
     padding: 12px 20px;
+
+    display: flex;
+	flex-direction: row;
+	flex-wrap: nowrap;
+	justify-content: flex-start;
+	align-items: center;
+	align-content: flex-start;
 }
 
 .wp-block-mightyblocks-block-notice p:last-child {
     margin-bottom: 0;
+}
+
+.wp-block-mightyblocks-notice-title {
+    font-weight: bold;
+}
+
+.wp-block-mightyblocks-block-notice .mb-icon {
+    font-size: 2rem;
+    margin-right: 20px;
 }

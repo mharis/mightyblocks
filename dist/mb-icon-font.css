@@ -1,0 +1,21 @@
+@font-face {
+	font-family: "mb-icon-font";
+	src: url("mb-icon-font.eot?6b68457894a1520b2bd9a23b98a3835e?#iefix") format("embedded-opentype"),
+url("mb-icon-font.woff2?6b68457894a1520b2bd9a23b98a3835e") format("woff2"),
+url("mb-icon-font.woff?6b68457894a1520b2bd9a23b98a3835e") format("woff");
+}
+
+.mb-icon {
+	line-height: 1;
+}
+
+.mb-icon:before {
+	font-family: mb-icon-font !important;
+	font-style: normal;
+	font-weight: normal !important;
+	vertical-align: top;
+}
+
+.mb-icon-lightbulb:before {
+	content: "\f101";
+}

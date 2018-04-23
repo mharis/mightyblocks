@@ -50,6 +50,10 @@ registerBlockType( 'mightyblocks/block-notice', {
 	],
 
 	attributes: {
+		title: {
+			type: 'string',
+			selector: '.wp-block-mightyblocks-notice-title',
+		},
         content: {
             type: 'array',
             selector: '.wp-block-mightyblocks-notice-text',
@@ -90,6 +94,7 @@ registerBlockType( 'mightyblocks/block-notice', {
 
 	edit: function( { focus, attributes, className, setAttributes } ) {
 		const {
+			title,
 			content,
 			type,
 			backgroundColor,
@@ -140,9 +145,9 @@ registerBlockType( 'mightyblocks/block-notice', {
 								setAttributes( { borderColor: '#125A12' } )
 								setAttributes( { fontColor: '#125A12' } )
 							} else if ( value === 'notice' )  {
-								setAttributes( { backgroundColor: '#FFFBD2' } )
-								setAttributes( { borderColor: '#d9b917' } )
-								setAttributes( { fontColor: '#C4A700' } )
+								setAttributes( { backgroundColor: '#ECF8F8' } )
+								setAttributes( { borderColor: '#7FC7CB' } )
+								setAttributes( { fontColor: '#525252' } )
 							} else {
 								setAttributes( { backgroundColor: '#eeeeee' } )
 								setAttributes( { borderColor: '#dddddd' } )
@@ -240,28 +245,49 @@ registerBlockType( 'mightyblocks/block-notice', {
 					borderWidth: borderSize + 'px'
 				} }
 			>
-	            <RichText
-					className='wp-block-mightyblocks-notice-text'
-					tagName='div'
-					multiline='p'
-	                onChange={ ( value ) => setAttributes( { content: value } ) }
-	                value={ content }
-	                isSelected={ focus }
-					placeholder={ __( 'Add notice text' ) }
-					formattingControls={ [ 'bold', 'italic', 'strikethrough', 'link' ] }
-					keepPlaceholderOnFocus
-					style={ {
-						fontSize: fontSize + 'px',
-						color: fontColor,
-						textAlign: alignment,
-					} }
-	            />
+				<div>
+					<span
+						class="mb-icon mb-icon-lightbulb"
+						style={ {
+							color: borderColor
+						} }
+					/>
+				</div>
+				<div>
+					<RichText
+						className='wp-block-mightyblocks-notice-title'
+						tagName='p'
+						placeholder={ __( 'Title' ) }
+						value={ title }
+						formattingControls={ [] }
+						isSelected={ focus }
+						onChange={ ( value ) => setAttributes( { title: value } ) }
+					/>
+
+		            <RichText
+						className='wp-block-mightyblocks-notice-text'
+						tagName='div'
+						multiline='p'
+		                onChange={ ( value ) => setAttributes( { content: value } ) }
+		                value={ content }
+		                isSelected={ focus }
+						placeholder={ __( 'Add notice text' ) }
+						formattingControls={ [ 'bold', 'italic', 'strikethrough', 'link' ] }
+						keepPlaceholderOnFocus
+						style={ {
+							fontSize: fontSize + 'px',
+							color: fontColor,
+							textAlign: alignment,
+						} }
+		            />
+				</div>
 			</div>
         ];
 	},
 
 	save( { attributes, className } ) {
 		const {
+			title,
 			content,
 			backgroundColor,
 			borderColor,
@@ -281,15 +307,31 @@ registerBlockType( 'mightyblocks/block-notice', {
 					borderWidth: borderSize + 'px'
 				} }
 			>
-				<div
-					className='wp-block-mightyblocks-notice-text'
-					style={ {
-						fontSize: fontSize + 'px',
-						color: fontColor,
-						textAlign: alignment
-					} }
-				>
-					{ content }
+				<div>
+					<span
+						class="mb-icon mb-icon-lightbulb"
+						style={ {
+							color: borderColor
+						} }
+					/>
+				</div>
+				<div>
+					<div
+						className='wp-block-mightyblocks-notice-title'
+					>
+						{ title }
+					</div>
+
+					<div
+						className='wp-block-mightyblocks-notice-text'
+						style={ {
+							fontSize: fontSize + 'px',
+							color: fontColor,
+							textAlign: alignment
+						} }
+					>
+						{ content }
+					</div>
 				</div>
 			</div>
 		)
