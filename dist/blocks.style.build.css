@@ -34,3 +34,50 @@
 .wp-block-mightyblocks-block-notice .mb-icon {
   font-size: 2rem;
   margin-right: 20px; }
+/**
+ * #.# Common SCSS
+ *
+ * Can include things like variables and mixins
+ * that are used across the project.
+*/
+/**
+ * #.# Styles
+ *
+ * CSS for both Frontend+Backend.
+ */
+.wp-block-mightyblocks-block-testimonial {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: row;
+      flex-direction: row;
+  -ms-flex-wrap: nowrap;
+      flex-wrap: nowrap;
+  -ms-flex-pack: start;
+      justify-content: flex-start;
+  -ms-flex-align: center;
+      align-items: center;
+  -ms-flex-line-pack: start;
+      align-content: flex-start;
+  padding: 20px;
+  border-style: solid; }
+
+.wp-block-mightyblocks-block-testimonial .wp-block-mightyblocks-testimonial-text p:last-child {
+  margin-bottom: 0; }
+
+.wp-block-mightyblocks-block-testimonial img {
+  margin-bottom: 0;
+  border-radius: 50%;
+  max-width: 100px;
+  height: auto;
+  margin-right: 15px;
+  vertical-align: initial; }
+
+.wp-block-mightyblocks-block-testimonial.wp-block-mightyblocks-block-testimonial-compact {
+  -ms-flex-pack: center;
+      justify-content: center;
+  -ms-flex-direction: column;
+      flex-direction: column;
+  text-align: center; }
+
+.wp-block-mightyblocks-block-testimonial.wp-block-mightyblocks-block-testimonial-compact img {
+  margin-right: 0; }

@@ -10,5 +10,26 @@
  * CSS for just Backend enqueued after style.scss
  * which makes it higher in priority.
  */
-.wp-block-mightyblocks-block-notice .mce-content-body p:last-child {
+.wp-block-mightyblocks-block-notice .wp-block-mightyblocks-notice-text p {
+  font-size: inherit; }
+
+.wp-block-mightyblocks-block-notice .wp-block-mightyblocks-notice-text p:last-child {
   margin-bottom: 0; }
+/**
+ * #.# Common SCSS
+ *
+ * Can include things like variables and mixins
+ * that are used across the project.
+*/
+/**
+ * #.# Editor Styles
+ *
+ * CSS for just Backend enqueued after style.scss
+ * which makes it higher in priority.
+ */
+.wp-block-mightyblocks-block-testimonial .wp-block-mightyblocks-testimonial-text p {
+  font-size: inherit; }
+
+.gutenberg__editor .wp-block-mightyblocks-block-testimonial img {
+  max-width: 100px;
+  height: auto; }

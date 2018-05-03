@@ -5,6 +5,10 @@
  * which makes it higher in priority.
  */
 
-.wp-block-mightyblocks-block-notice .mce-content-body p:last-child {
-    margin-bottom: 0;
-}
+ .wp-block-mightyblocks-block-notice .wp-block-mightyblocks-notice-text p {
+     font-size: inherit;
+ }
+
+ .wp-block-mightyblocks-block-notice .wp-block-mightyblocks-notice-text p:last-child {
+     margin-bottom: 0;
+ }

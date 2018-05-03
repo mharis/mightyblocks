@@ -161,6 +161,79 @@ Redux::setSection( $opt_name, array(
         ),
     )
 ) );
+
+
+Redux::setSection( $opt_name, array(
+    'title'            => __( 'Testimonial', 'mightyblocks' ),
+    'id'               => 'block-testimonial',
+    'subsection'       => true,
+    'fields'           => array(
+        array(
+            'id'       => 'testimonial-bg-color',
+            'type'     => 'color',
+            'title'    => __( 'Background Color', 'mightyblocks' ),
+            'subtitle' => __( 'Set the default background color for the testimonial block.', 'mightyblocks' ),
+            'default'  => '#FFFFFF',
+        ),
+        array(
+            'id'       => 'testimonial-border-color',
+            'type'     => 'color',
+            'title'    => __( 'Border Color', 'mightyblocks' ),
+            'subtitle' => __( 'Set the border color for the testimonial block. (In Pixels)', 'mightyblocks' ),
+            'default'  => '#4A4A4A',
+        ),
+        array(
+            'id'       => 'testimonial-border-size',
+            'type'     => 'slider',
+            'title'    => __( 'Border Size', 'mightyblocks' ),
+            'subtitle' => __( 'Set the border size for the testimonial block.', 'mightyblocks' ),
+            'default'  => 4,
+            'min'      => 0,
+            'step'     => 1,
+            'max'      => 24,
+            'resolution'    => 1,
+            'display_value' => 'text'
+        ),
+        array(
+            'id'       => 'testimonial-title-font-color',
+            'type'     => 'color',
+            'title'    => __( 'Title Font Color', 'mightyblocks' ),
+            'subtitle' => __( 'Set the font color for title of testimonial block.', 'mightyblocks' ),
+            'default'  => '#000000',
+        ),
+        array(
+            'id'       => 'testimonial-title-font-size',
+            'type'     => 'slider',
+            'title'    => __( 'Title Font Size', 'mightyblocks' ),
+            'subtitle' => __( 'Set the font size for title of testimonial block.', 'mightyblocks' ),
+            'default'  => 24,
+            'min'      => 1,
+            'step'     => 1,
+            'max'      => 32,
+            'resolution'    => 1,
+            'display_value' => 'text'
+        ),
+        array(
+            'id'       => 'testimonial-font-color',
+            'type'     => 'color',
+            'title'    => __( 'Testimonial Font Color', 'mightyblocks' ),
+            'subtitle' => __( 'Set the font color for actual testimonial.', 'mightyblocks' ),
+            'default'  => '#4F4F4F',
+        ),
+        array(
+            'id'       => 'testimonial-font-size',
+            'type'     => 'slider',
+            'title'    => __( 'Testimonial Font Size', 'mightyblocks' ),
+            'subtitle' => __( 'Set the font size for actual testimonial.', 'mightyblocks' ),
+            'default'  => 16,
+            'min'      => 1,
+            'step'     => 1,
+            'max'      => 32,
+            'resolution'    => 1,
+            'display_value' => 'text'
+        ),
+    )
+) );
 /*
  * <--- END SECTIONS
  */

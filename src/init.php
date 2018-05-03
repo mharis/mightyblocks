@@ -41,6 +41,9 @@ add_action( 'enqueue_block_assets', 'mightyblocks_block_assets' );
  * @since 1.0.0
  */
 function mightyblocks_editor_assets() {
+	$options = get_option( 'mightyblocks' );
+	$options[ 'plugin_url' ] = plugins_url( '/', dirname( __FILE__ ) );
+
 	// Scripts.
 	wp_enqueue_script(
 		'mightyblocks-block-js',
@@ -51,7 +54,7 @@ function mightyblocks_editor_assets() {
 	wp_localize_script(
 		'mightyblocks-block-js',
 		'mightyblocks',
-		get_option('mightyblocks')
+		$options
 	);
 
 	// Styles.
