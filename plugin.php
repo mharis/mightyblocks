@@ -21,10 +21,3 @@ if ( ! defined( 'ABSPATH' ) ) {
  * Block Initializer.
  */
 require_once plugin_dir_path( __FILE__ ) . 'src/init.php';
-
-if ( ! class_exists( 'ReduxFramework' ) && file_exists( dirname( __FILE__ ) . '/includes/ReduxFramework/ReduxCore/framework.php' ) ) {
-    require_once( dirname( __FILE__ ) . '/includes/ReduxFramework/ReduxCore/framework.php' );
-}
-if ( file_exists( dirname( __FILE__ ) . '/includes/ReduxConfig.php' ) ) {
-    require_once( dirname( __FILE__ ) . '/includes/ReduxConfig.php' );
-}

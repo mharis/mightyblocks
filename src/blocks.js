@@ -11,3 +11,5 @@
 
 import './notice/block.js';
 import './testimonial/block.js';
+import './tabs/block.js';
+import './accordion/block.js';
