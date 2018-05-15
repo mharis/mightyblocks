@@ -44,6 +44,11 @@ function mightyblocks_editor_assets() {
 	$options = array();
 	$options[ 'plugin_url' ] = plugins_url( '/', dirname( __FILE__ ) );
 
+	include_once plugin_dir_path( dirname( __FILE__ ) ) . '/blocks/Accordion.php';
+
+	$Accordion = new Accordion();
+	$options[ 'blocks' ]['Accordion'] = $Accordion->register_controls();
+	
 	// Scripts.
 	wp_enqueue_script(
 		'mightyblocks-block-accordion-template-js',

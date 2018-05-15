@@ -75,30 +75,38 @@ registerBlockType( 'mightyblocks/block-accordion', {
 			type,
 		} = attributes;
 
-		const inspectorControls = focus && (
+		const options = mightyblocks['blocks']['Accordion'];
+
+
+		const inspectorControls = (
 			<InspectorControls>
 				<br />
-
-				<SelectControl
-					label={ __( 'Type' ) }
-					description={ __( 'Select style of testimonial.' ) }
-					options={
-						[
-							{
-								value: 'wide',
-								label: __( 'Wide' )
-							},
-							{
-								value: 'compact',
-								label: __( 'Compact' )
-							},
-						]
-					}
-					value={ type }
-					onChange={ ( value ) => setAttributes( { type: value } ) }
-				/>
+				{
+					Object.keys(options).map((index) => {
+						return <SelectControl
+							label={ __( 'Type' ) }
+							description={ __( 'Select style of testimonial.' ) }
+							options={
+								[
+									{
+										value: 'wide',
+										label: __( 'Wide' )
+									},
+									{
+										value: 'compact',
+										label: __( 'Compact' )
+									},
+								]
+							}
+							value={ type }
+							onChange={ ( value ) => setAttributes( { type: value } ) }
+						/>
+					})
+				}
 			</InspectorControls>
 		);
+
+		console.log(inspectorControls);
 
         return [
 			inspectorControls,

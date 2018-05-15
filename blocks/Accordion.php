@@ -95,7 +95,9 @@ class Accordion {
                 'wide'      => __( 'Wide', 'wpmightyblocks' ),
                 'compact'   => __( 'Compact', 'wpmightyblocks' )
             ),
-        );
+		);
+		
+		return $options;
     }
     
 
