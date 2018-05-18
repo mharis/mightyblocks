@@ -43,18 +43,8 @@ add_action( 'enqueue_block_assets', 'mightyblocks_block_assets' );
 function mightyblocks_editor_assets() {
 	$options = array();
 	$options[ 'plugin_url' ] = plugins_url( '/', dirname( __FILE__ ) );
-
-	include_once plugin_dir_path( dirname( __FILE__ ) ) . '/blocks/Accordion.php';
-
-	$Accordion = new Accordion();
-	$options[ 'blocks' ]['Accordion'] = $Accordion->register_controls();
 	
 	// Scripts.
-	wp_enqueue_script(
-		'mightyblocks-block-accordion-template-js',
-		plugins_url( '/templates/accordion.js', dirname( __FILE__ ) )
-	);
-
 	wp_enqueue_script(
 		'mightyblocks-block-js',
 		plugins_url( '/dist/blocks.build.js', dirname( __FILE__ ) ),
@@ -82,3 +72,7 @@ function mightyblocks_editor_assets() {
 
 // Hook: Editor assets.
 add_action( 'enqueue_block_editor_assets', 'mightyblocks_editor_assets' );
+
+
+include_once plugin_dir_path( dirname( __FILE__ ) ) . '/blocks/Accordion.php';
+$Accordion = new Accordion();
