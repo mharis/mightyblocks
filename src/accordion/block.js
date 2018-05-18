@@ -5,6 +5,7 @@
 //  Import CSS.
 import './style.scss';
 import './editor.scss';
+import ReactHtmlParser, { processNodes, convertNodeToElement, htmlparser2 } from 'react-html-parser';
 
 const { __ } = wp.i18n;
 
@@ -28,6 +29,7 @@ const {
 } = wp.components;
 
 const { Component } = wp.element;
+
 
 /**
  * Register: a Gutenberg Block.
@@ -169,6 +171,25 @@ class Accordion extends Component {
 			items
 		} = this.state;
 
-		return <div dangerouslySetInnerHTML={{__html: wpMightyBlocksAccordionTemplate( className, items )}} />
+		const template = ReactHtmlParser(wpMightyBlocksAccordionTemplate( className, items ), {
+			transform: node => {
+				if ( node.type === 'tag' && node.name === 'div' ) {
+					if ( node.attribs['data-type'] === 'content' ) {
+						return <RichText
+							className='wp-block-mightyblocks-testimonial-text'
+							tagName='div'
+							multiline='p'
+							onChange={ ( value ) => setAttributes( { title: value } ) }
+							value={ title }
+							placeholder={ __( 'Add notice text' ) }
+							formattingControls={ [ 'bold', 'italic', 'strikethrough', 'link' ] }
+							keepPlaceholderOnFocus
+						/>;
+					}
+				}
+			}
+		});
+
+		return template;
 	}
 }

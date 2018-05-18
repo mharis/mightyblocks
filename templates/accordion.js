@@ -1,4 +1,4 @@
-function wpMightyBlocksAccordionTemplate( className, items) {
+function wpMightyBlocksAccordionTemplate( className, items ) {
     const renderItems = Object.keys(items).map((index) => {
         return `<li>
             <div class='wp-block-mightyblocks-block-accordion-head'>
@@ -6,7 +6,7 @@ function wpMightyBlocksAccordionTemplate( className, items) {
                 <span class="wp-block-mightyblocks-block-accordion-head-icon"></span>
             </div>
             <div class='wp-block-mightyblocks-block-accordion-content-wrapper'>
-                <span>456</span>
+                <div data-type="content"></div>
             </div>
         </li>`;
     });
