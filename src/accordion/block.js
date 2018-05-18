@@ -57,11 +57,11 @@ registerBlockType( 'mightyblocks/block-accordion', {
 	attributes: {
 		title: {
 			type: 'string',
-			selector: '.wp-block-mightyblocks-testimonial-title',
+			selector: '.wp-block-mightyblocks-accordion-title',
 		},
 		content: {
             type: 'array',
-            selector: '.wp-block-mightyblocks-testimonial-text',
+            selector: '.wp-block-mightyblocks-accordion-content',
             source: 'children',
         },
 		type: {
@@ -145,13 +145,28 @@ class Accordion extends Component {
 	}
 
     updateItem(index, type, value) {
+		const {
+			attributes,
+			setAttributes,
+		} = this.props;
+
+		const {
+			title,
+			content
+		} = attributes;
+
         const currentState = this.state;
         const items  = currentState.items;
 
         items[index][type] = value;
 
         this.setState({ items: items });
-        currentState.items = items;
+		currentState.items = items;
+		
+		const settingAttributes = {};
+		settingAttributes[ type ] = value;
+
+		setAttributes( settingAttributes );
     }
 
 	render() {
@@ -163,7 +178,8 @@ class Accordion extends Component {
 		} = this.props;
 
 		const {
-			title
+			title,
+			content
 		} = attributes;
 
 		const {
@@ -171,17 +187,20 @@ class Accordion extends Component {
 			items
 		} = this.state;
 
+		const that = this;
+
 		const template = ReactHtmlParser(wpMightyBlocksAccordionTemplate( className, items ), {
 			transform: node => {
 				if ( node.type === 'tag' && node.name === 'div' ) {
 					if ( node.attribs['data-type'] === 'content' ) {
+						const key = node.attribs['key'];
 						return <RichText
-							className='wp-block-mightyblocks-testimonial-text'
+							className='wp-block-mightyblocks-accordion-content'
 							tagName='div'
 							multiline='p'
-							onChange={ ( value ) => setAttributes( { title: value } ) }
-							value={ title }
-							placeholder={ __( 'Add notice text' ) }
+							onChange={ ( value ) => that.updateItem( key, 'content', value ) }
+							value={ content }
+							placeholder={ __( 'Add accordion content' ) }
 							formattingControls={ [ 'bold', 'italic', 'strikethrough', 'link' ] }
 							keepPlaceholderOnFocus
 						/>;
