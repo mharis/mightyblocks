@@ -15,7 +15,6 @@ const {
 	InspectorControls,
 	ColorPalette,
 	BlockControls,
-	MediaUpload,
 	PlainText
 } = wp.blocks;
 
@@ -55,15 +54,9 @@ registerBlockType( 'mightyblocks/block-accordion', {
 	],
 
 	attributes: {
-		title: {
-			type: 'string',
-			selector: '.wp-block-mightyblocks-accordion-title',
+		items: {
+			type: 'array'
 		},
-		content: {
-            type: 'array',
-            selector: '.wp-block-mightyblocks-accordion-content',
-            source: 'children',
-        },
 		type: {
 			type: 'string',
 			default: 'wide'
@@ -72,8 +65,7 @@ registerBlockType( 'mightyblocks/block-accordion', {
 
 	edit: function( { focus, attributes, className, setAttributes } ) {
 		const {
-			title,
-			content,
+			items,
 			type,
 		} = attributes;
 
@@ -105,24 +97,26 @@ registerBlockType( 'mightyblocks/block-accordion', {
         return [
 			inspectorControls,
 			<Accordion
-				className={className}
-				attributes={attributes}
-				setAttributes={setAttributes}
-				focus={focus}
+				className={ className }
+				attributes={ attributes }
+				setAttributes={ setAttributes }
+				focus={ focus }
+				editing={ true }
 			/>
         ];
 	},
 
 	save( { attributes, className } ) {
 		const {
-			title,
-			content,
+			items,
 			type
 		} = attributes;
 
 		return (
 			<Accordion
-				className={className}
+				className={ className }
+				attributes={ attributes }
+				editing={ false }
 			/>
 		);
 	}
@@ -132,41 +126,35 @@ registerBlockType( 'mightyblocks/block-accordion', {
 class Accordion extends Component {
 	constructor(props) {
 		super(props);
+		let items;
 
+		if(typeof props.attributes.items === 'undefined') {
+            items = [{
+                title: '',
+                content: ''
+            }];
+        } else {
+            items = props.attributes.items;
+		}
+		
         this.state = {
             activeItem: 0,
-            items: [
-				{
-					name: 'Vivamus ullamcorper nim sit amet consequat laoreet tortor tortor dictum egestas urna.',
-					content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur eget leo at velit imperdiet varius. In eu ipsum vitae velit congue iaculis vitae at risus. Nullam tortor nunc, bibendum vitae semper a, volutpat eget massa. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer fringilla, orci sit amet posuere auctor, orci eros pellentesque odio, nec pellentesque erat ligula nec massa. Aenean consequat lorem ut felis ullamcorper posuere gravida tellus faucibus. Maecenas dolor elit, pulvinar eu vehicula eu, consequat et lacus. Duis et purus ipsum. In auctor mattis ipsum id molestie. Donec risus nulla, fringilla a rhoncus vitae, semper a massa. Vivamus ullamcorper, enim sit amet consequat laoreet, tortor tortor dictum urna, ut egestas urna ipsum nec libero. Nulla justo leo, molestie vel tempor nec, egestas at massa. Aenean pulvinar, felis porttitor iaculis pulvinar, odio orci sodales odio, ac pulvinar felis quam sit.'
-				}
-			]
-        };
+            items
+		};
 	}
 
     updateItem(index, type, value) {
 		const {
-			attributes,
-			setAttributes,
+			setAttributes
 		} = this.props;
-
-		const {
-			title,
-			content
-		} = attributes;
 
         const currentState = this.state;
         const items  = currentState.items;
 
         items[index][type] = value;
 
-        this.setState({ items: items });
-		currentState.items = items;
-		
-		const settingAttributes = {};
-		settingAttributes[ type ] = value;
-
-		setAttributes( settingAttributes );
+        this.setState({ items });	
+		setAttributes({ items });
     }
 
 	render() {
@@ -174,13 +162,9 @@ class Accordion extends Component {
 			className,
 			attributes,
 			setAttributes,
-			focus
+			focus,
+			editing
 		} = this.props;
-
-		const {
-			title,
-			content
-		} = attributes;
 
 		const {
 			activeItem,
@@ -192,18 +176,36 @@ class Accordion extends Component {
 		const template = ReactHtmlParser(wpMightyBlocksAccordionTemplate( className, items ), {
 			transform: node => {
 				if ( node.type === 'tag' && node.name === 'div' ) {
+					if ( node.attribs['data-type'] === 'title' ) {
+						const key = node.attribs['key'];
+
+						if ( editing === true ) {
+							return <PlainText
+								value={ items[ key ]['title'] }
+								onChange={ ( value ) => that.updateItem( key, 'title', value ) }
+							/>;
+						} else {
+							return <div class='wp-block-mightyblocks-accordion-title'>{ items[ key ]['title'] }</div>;
+						}
+					}
+
 					if ( node.attribs['data-type'] === 'content' ) {
 						const key = node.attribs['key'];
-						return <RichText
-							className='wp-block-mightyblocks-accordion-content'
-							tagName='div'
-							multiline='p'
-							onChange={ ( value ) => that.updateItem( key, 'content', value ) }
-							value={ content }
-							placeholder={ __( 'Add accordion content' ) }
-							formattingControls={ [ 'bold', 'italic', 'strikethrough', 'link' ] }
-							keepPlaceholderOnFocus
-						/>;
+
+						if ( editing === true ) {
+							return <RichText
+								class='wp-block-mightyblocks-accordion-content'
+								tagName='div'
+								multiline='p'
+								onChange={ ( value ) => that.updateItem( key, 'content', value ) }
+								value={ items[ key ]['content'] }
+								placeholder={ __( 'Add accordion content' ) }
+								formattingControls={ [ 'bold', 'italic', 'strikethrough', 'link' ] }
+								keepPlaceholderOnFocus
+							/>;
+						} else {
+							return <div class='wp-block-mightyblocks-accordion-content'>{ items[ key ]['content'] }</div>;
+						}
 					}
 				}
 			}
