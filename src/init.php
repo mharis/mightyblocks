@@ -71,8 +71,11 @@ function mightyblocks_editor_assets() {
 } // End function mightyblocks_editor_assets().
 
 // Hook: Editor assets.
-add_action( 'enqueue_block_editor_assets', 'mightyblocks_editor_assets' );
+add_action( 'enqueue_block_editor_assets', 'mightyblocks_editor_assets', 11 );
 
 
 include_once plugin_dir_path( dirname( __FILE__ ) ) . '/blocks/Accordion.php';
 $Accordion = new Accordion();
+
+include_once plugin_dir_path( dirname( __FILE__ ) ) . '/blocks/Video.php';
+$Accordion = new Video();

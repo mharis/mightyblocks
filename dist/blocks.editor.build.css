@@ -108,3 +108,15 @@
 
 .wp-block-mightyblocks-block-accordion .wp-block-mightyblocks-block-accordion-content p:last-child {
   margin-bottom: 0; }
+/**
+ * #.# Common SCSS
+ *
+ * Can include things like variables and mixins
+ * that are used across the project.
+*/
+/**
+ * #.# Editor Styles
+ *
+ * CSS for just Backend enqueued after style.scss
+ * which makes it higher in priority.
+ */
