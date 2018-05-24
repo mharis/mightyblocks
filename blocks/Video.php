@@ -116,6 +116,12 @@ class Video {
             'default'       => true
         );
         
+        $options['title'] = array(
+            'label'         => __( 'Title & Actions', 'wpmightyblocks' ),
+            'description'   => 'Check to show title on video and other video actions.',
+            'type'          => 'ToggleControl',
+            'default'       => true
+        );
         
         $options['mute'] = array(
             'label'         => __( 'Mute Video', 'wpmightyblocks' ),

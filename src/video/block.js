@@ -69,37 +69,7 @@ registerBlockType( 'mightyblocks/block-video', {
 
 	attributes,
 
-	getId: function( url ) {
-		var ID = '';
-		url = url.replace(/(>|<)/gi,'').split(/(vi\/|v=|\/v\/|youtu\.be\/|\/embed\/)/);
-
-		if ( url[2] !== undefined ) {
-			ID = url[2].split(/[^0-9a-z_\-]/i);
-			ID = ID[0];
-		}
-		else {
-			ID = url;
-		}
-		
-		return ID;
-	},
-
 	edit: function( { focus, attributes, className, setAttributes } ) {
-		const getId = function( url ) {
-			var ID = '';
-			url = url.replace(/(>|<)/gi,'').split(/(vi\/|v=|\/v\/|youtu\.be\/|\/embed\/)/);
-	
-			if ( url[2] !== undefined ) {
-				ID = url[2].split(/[^0-9a-z_\-]/i);
-				ID = ID[0];
-			}
-			else {
-				ID = url;
-			}
-			
-			return ID;
-		};
-
 		const inspectorControls = (
 			<InspectorControls>
 				<br />
@@ -139,45 +109,62 @@ registerBlockType( 'mightyblocks/block-video', {
 			</InspectorControls>
 		);
 
-		const videoId = getId( attributes['link'] );
-		const urlEmbed = `https://www.youtube.com/embed/${ videoId }`;
-
         return [
 			inspectorControls,
-			<div className={ className }>
-				<iframe src={ urlEmbed }></iframe>
-			</div>
+			<MightyBlocksVideo
+				className={ className }
+				attributes={ attributes }
+			/>
         ];
 	},
 
 	save( { attributes, className } ) {
-		const {
-			type,
-			link
-		} = attributes;
-
-		const getId = function( url ) {
-			var ID = '';
-			url = url.replace(/(>|<)/gi,'').split(/(vi\/|v=|\/v\/|youtu\.be\/|\/embed\/)/);
-	
-			if ( url[2] !== undefined ) {
-				ID = url[2].split(/[^0-9a-z_\-]/i);
-				ID = ID[0];
-			}
-			else {
-				ID = url;
-			}
-			
-			return ID;
-		};
-
-		const videoId = getId( link );
-		const urlEmbed = `https://www.youtube.com/embed/${ videoId }`;
-
-		return (
-			<div>
-				<iframe src={ urlEmbed }></iframe>
-			</div>
-		);
+		return <MightyBlocksVideo
+			className={ className }
+			attributes={ attributes }
+		/>;
 	}
 } );
+
+class MightyBlocksVideo extends Component {
+	constructor(props) {
+		super(props);
+	}
+
+	getId( url ) {
+		var ID = '';
+		url = url.replace(/(>|<)/gi,'').split(/(vi\/|v=|\/v\/|youtu\.be\/|\/embed\/)/);
+
+		if ( url[2] !== undefined ) {
+			ID = url[2].split(/[^0-9a-z_\-]/i);
+			ID = ID[0];
+		}
+		else {
+			ID = url;
+		}
+		
+		return ID;
+	}
+
+	render() {
+		const {
+			className,
+			attributes
+		} = this.props;
+
+		const videoId = this.getId( attributes['link'] );
+		const urlEmbed = new URL(`https://www.youtube.com/embed/${ videoId }`);
+
+		urlEmbed.searchParams.set( 'feature', 'oembed' );
+		urlEmbed.searchParams.set( 'autoplay', ( attributes['autoplay'] ) ? 1 : 0 );
+		urlEmbed.searchParams.set( 'rel', ( attributes['suggested'] ) ? 1 : 0 );
+		urlEmbed.searchParams.set( 'controls', ( attributes['controls'] ) ? 1 : 0 );
+		urlEmbed.searchParams.set( 'mute', ( attributes['mute'] ) ? 1 : 0 );
+		urlEmbed.searchParams.set( 'wmode', 'opaque' );
+		urlEmbed.searchParams.set( 'showinfo', ( attributes['title'] ) ? 1 : 0 );
+		
+		return <div className={ className }>
+			<iframe src={ urlEmbed.href }></iframe>
+		</div>;
+	}
+}
