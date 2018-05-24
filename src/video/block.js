@@ -70,6 +70,11 @@ registerBlockType( 'mightyblocks/block-video', {
 	attributes,
 
 	edit: function( { focus, attributes, className, setAttributes } ) {
+
+		if ( attributes['type'] === 'vimeo' ) {
+			attributes['link'] === 'https://vimeo.com/270821275';
+		}
+
 		const inspectorControls = (
 			<InspectorControls>
 				<br />
@@ -77,7 +82,25 @@ registerBlockType( 'mightyblocks/block-video', {
 					Object.keys( options ).map( index => {
 						const option = options[ index ];
 
+						let visible = true;
+
 						if ( option['type'] === 'PlainText' || option['type'] === 'RichText' ) {
+							visible = false;
+						}
+
+						if ( option['conditions'] ) {
+							if ( option['conditions']['show'] ) {
+								Object.keys( option['conditions']['show'] ).map( showConditionIndex => {
+									const showCondition = option['conditions']['show'][ showConditionIndex ];
+
+									if ( attributes[ showCondition['field'] ] !== showCondition['value'] ) {
+										visible = false;
+									}
+								});
+							}
+						}
+
+						if ( visible === false ) {
 							return;
 						}
 						
@@ -131,7 +154,7 @@ class MightyBlocksVideo extends Component {
 		super(props);
 	}
 
-	getId( url ) {
+	getYoutubeId( url ) {
 		var ID = '';
 		url = url.replace(/(>|<)/gi,'').split(/(vi\/|v=|\/v\/|youtu\.be\/|\/embed\/)/);
 
@@ -146,23 +169,36 @@ class MightyBlocksVideo extends Component {
 		return ID;
 	}
 
+	getVimeoId( url ) {
+		var match = /vimeo.*\/(\d+)/i.exec( url );
+		if ( match ) {
+			return match[1];
+		}
+	}
+
 	render() {
 		const {
 			className,
 			attributes
 		} = this.props;
 
-		const videoId = this.getId( attributes['link'] );
-		const urlEmbed = new URL(`https://www.youtube.com/embed/${ videoId }`);
+		let urlEmbed;
+		if ( attributes['type'] === 'youtube' ) {
+			const videoId = this.getYoutubeId( attributes['ytlink'] );
+			urlEmbed = new URL(`https://www.youtube.com/embed/${ videoId }`);
 
-		urlEmbed.searchParams.set( 'feature', 'oembed' );
-		urlEmbed.searchParams.set( 'autoplay', ( attributes['autoplay'] ) ? 1 : 0 );
-		urlEmbed.searchParams.set( 'rel', ( attributes['suggested'] ) ? 1 : 0 );
-		urlEmbed.searchParams.set( 'controls', ( attributes['controls'] ) ? 1 : 0 );
-		urlEmbed.searchParams.set( 'mute', ( attributes['mute'] ) ? 1 : 0 );
-		urlEmbed.searchParams.set( 'wmode', 'opaque' );
-		urlEmbed.searchParams.set( 'showinfo', ( attributes['title'] ) ? 1 : 0 );
-		
+			urlEmbed.searchParams.set( 'feature', 'oembed' );
+			urlEmbed.searchParams.set( 'autoplay', ( attributes['autoplay'] ) ? 1 : 0 );
+			urlEmbed.searchParams.set( 'rel', ( attributes['suggested'] ) ? 1 : 0 );
+			urlEmbed.searchParams.set( 'controls', ( attributes['controls'] ) ? 1 : 0 );
+			urlEmbed.searchParams.set( 'mute', ( attributes['mute'] ) ? 1 : 0 );
+			urlEmbed.searchParams.set( 'wmode', 'opaque' );
+			urlEmbed.searchParams.set( 'showinfo', ( attributes['title'] ) ? 1 : 0 );
+		} else {
+			const videoId = this.getVimeoId( attributes['vimeolink'] );
+			urlEmbed = new URL(`https://player.vimeo.com/video/${ videoId }`);
+		}
+
 		return <div className={ className }>
 			<iframe src={ urlEmbed.href }></iframe>
 		</div>;

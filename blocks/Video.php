@@ -88,11 +88,34 @@ class Video {
             )
         );
         
-        $options['link'] = array(
+        $options['ytlink'] = array(
             'label'         => __( 'Video Link', 'wpmightyblocks' ),
             'description'   => '',
             'type'          => 'TextControl',
             'default'       => 'https://www.youtube.com/watch?v=2MpUj-Aua48',
+            'conditions'    => array(
+                'show' => array(
+                    array(
+                        'field' => 'type',
+                        'value' => 'youtube'
+                    )
+                )
+            )
+        );
+
+        $options['vimeolink'] = array(
+            'label'         => __( 'Video Link', 'wpmightyblocks' ),
+            'description'   => '',
+            'type'          => 'TextControl',
+            'default'       => 'https://vimeo.com/270821275',
+            'conditions'    => array(
+                'show' => array(
+                    array(
+                        'field' => 'type',
+                        'value' => 'vimeo'
+                    )
+                )
+            )
         );
         
         $options['autoplay'] = array(
@@ -106,28 +129,60 @@ class Video {
             'label'         => __( 'Suggested Videos', 'wpmightyblocks' ),
             'description'   => 'Check to show suggested video after the video ends.',
             'type'          => 'ToggleControl',
-            'default'       => false
+            'default'       => false,
+            'conditions'    => array(
+                'show' => array(
+                    array(
+                        'field' => 'type',
+                        'value' => 'youtube'
+                    )
+                )
+            )
         );
         
         $options['controls'] = array(
             'label'         => __( 'Player Controls', 'wpmightyblocks' ),
             'description'   => 'Check to show player controls.',
             'type'          => 'ToggleControl',
-            'default'       => true
+            'default'       => true,
+            'conditions'    => array(
+                'show' => array(
+                    array(
+                        'field' => 'type',
+                        'value' => 'youtube'
+                    )
+                )
+            )
         );
         
         $options['title'] = array(
             'label'         => __( 'Title & Actions', 'wpmightyblocks' ),
             'description'   => 'Check to show title on video and other video actions.',
             'type'          => 'ToggleControl',
-            'default'       => true
+            'default'       => true,
+            'conditions'    => array(
+                'show' => array(
+                    array(
+                        'field' => 'type',
+                        'value' => 'youtube'
+                    )
+                )
+            )
         );
         
         $options['mute'] = array(
             'label'         => __( 'Mute Video', 'wpmightyblocks' ),
             'description'   => 'Check to show mute video on load.',
             'type'          => 'ToggleControl',
-            'default'       => false
+            'default'       => false,
+            'conditions'    => array(
+                'show' => array(
+                    array(
+                        'field' => 'type',
+                        'value' => 'youtube'
+                    )
+                )
+            )
         );
     
 		
