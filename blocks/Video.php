@@ -17,7 +17,10 @@ class Video {
 	}
 
 	public function editor_assets() {
-		$options = $this->register_controls();
+		$options = apply_filters(
+            'mightyblocks_' . $this->get_name() . '_settings',
+            $this->register_controls()
+        );
 
 		// Scripts.
 		wp_enqueue_script(
