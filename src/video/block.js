@@ -70,11 +70,6 @@ registerBlockType( 'mightyblocks/block-video', {
 	attributes,
 
 	edit: function( { focus, attributes, className, setAttributes } ) {
-
-		if ( attributes['type'] === 'vimeo' ) {
-			attributes['link'] === 'https://vimeo.com/270821275';
-		}
-
 		const inspectorControls = (
 			<InspectorControls>
 				<br />
@@ -126,6 +121,18 @@ registerBlockType( 'mightyblocks/block-video', {
 								checked={ attributes[ index ] }
 								onChange={ ( value ) => setAttributes( { [index]: value } ) }
 							/>;
+						} else if ( option['type'] === 'PanelColor' ) {
+							return <PanelColor
+								title={ option['label'] }
+								colorValue={ attributes[ index ] }
+								initialOpen={ false }
+							>
+								<ColorPalette
+									label={ option['label']  }
+									value={ attributes[ index ] }
+									onChange={ ( value ) => setAttributes( { [index]: value } ) }
+								/>
+							</PanelColor>;
 						}
 					})
 				}
@@ -197,6 +204,13 @@ class MightyBlocksVideo extends Component {
 		} else {
 			const videoId = this.getVimeoId( attributes['vimeolink'] );
 			urlEmbed = new URL(`https://player.vimeo.com/video/${ videoId }`);
+
+			urlEmbed.searchParams.set( 'autoplay', ( attributes['autoplay'] ) ? 1 : 0 );
+			urlEmbed.searchParams.set( 'loop', ( attributes['loop'] ) ? 1 : 0 );
+			urlEmbed.searchParams.set( 'title', ( attributes['intro'] ) ? 1 : 0 );
+			urlEmbed.searchParams.set( 'byline', ( attributes['intro'] ) ? 1 : 0 );
+			urlEmbed.searchParams.set( 'portrait', ( attributes['intro'] ) ? 1 : 0 );
+			urlEmbed.searchParams.set( 'color', attributes['controlsColor'].replace( '#', '' ) );
 		}
 
 		return <div className={ className }>

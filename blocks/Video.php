@@ -124,6 +124,51 @@ class Video {
             'type'          => 'ToggleControl',
             'default'       => false
         );
+
+        $options['loop'] = array(
+            'label'         => __( 'Loop', 'wpmightyblocks' ),
+            'description'   => 'Check to loop video.',
+            'type'          => 'ToggleControl',
+            'default'       => false,
+            'conditions'    => array(
+                'show' => array(
+                    array(
+                        'field' => 'type',
+                        'value' => 'vimeo'
+                    )
+                )
+            )
+        );
+
+        $options['controlsColor'] = array(
+            'label'         => __( 'Controls Color', 'wpmightyblocks' ),
+            'description'   => '',
+            'type'          => 'PanelColor',
+            'default'       => '',
+            'conditions'    => array(
+                'show' => array(
+                    array(
+                        'field' => 'type',
+                        'value' => 'vimeo'
+                    )
+                )
+            )
+        );
+
+        $options['intro'] = array(
+            'label'         => __( 'Intro Details', 'wpmightyblocks' ),
+            'description'   => 'Check to show intro details before playing the video.',
+            'type'          => 'ToggleControl',
+            'default'       => false,
+            'conditions'    => array(
+                'show' => array(
+                    array(
+                        'field' => 'type',
+                        'value' => 'vimeo'
+                    )
+                )
+            )
+        );
         
         $options['suggested'] = array(
             'label'         => __( 'Suggested Videos', 'wpmightyblocks' ),
