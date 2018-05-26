@@ -193,7 +193,7 @@ class MightyBlocksVideo extends Component {
 		if ( attributes['type'] === 'youtube' ) {
 			const videoId = this.getYoutubeId( attributes['ytlink'] );
 			urlEmbed = new URL(`https://www.youtube.com/embed/${ videoId }`);
-
+	
 			urlEmbed.searchParams.set( 'feature', 'oembed' );
 			urlEmbed.searchParams.set( 'autoplay', ( attributes['autoplay'] ) ? 1 : 0 );
 			urlEmbed.searchParams.set( 'rel', ( attributes['suggested'] ) ? 1 : 0 );
@@ -204,7 +204,7 @@ class MightyBlocksVideo extends Component {
 		} else {
 			const videoId = this.getVimeoId( attributes['vimeolink'] );
 			urlEmbed = new URL(`https://player.vimeo.com/video/${ videoId }`);
-
+	
 			urlEmbed.searchParams.set( 'autoplay', ( attributes['autoplay'] ) ? 1 : 0 );
 			urlEmbed.searchParams.set( 'loop', ( attributes['loop'] ) ? 1 : 0 );
 			urlEmbed.searchParams.set( 'title', ( attributes['intro'] ) ? 1 : 0 );
@@ -213,8 +213,8 @@ class MightyBlocksVideo extends Component {
 			urlEmbed.searchParams.set( 'color', attributes['controlsColor'].replace( '#', '' ) );
 		}
 
-		return <div className={ className }>
-			<iframe src={ urlEmbed.href }></iframe>
-		</div>;
+		const template = ReactHtmlParser( wpMightyBlocksVideoTemplate( className, attributes, urlEmbed ) );
+
+		return template;
 	}
 }
