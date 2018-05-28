@@ -22,12 +22,14 @@ class Video {
             $this->register_controls()
         );
 
-        $template_path = mightyblocks_locate_template( 'video.js' );
+        $template = mightyblocks_locate_template( 'video.js' );
+
+        var_dump('123', $template);
 
 		// Scripts.
 		wp_enqueue_script(
             'mightyblocks-block-video-template-js',
-            $template_path
+            $template
 		);
 
 		wp_localize_script(

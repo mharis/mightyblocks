@@ -22,7 +22,7 @@ class Accordion {
             $this->register_controls()
         );
 
-		$template_path = mightyblocks_locate_template( 'video.js' );
+		$template_path = mightyblocks_locate_template( 'accordion.js' );
 
 		// Scripts.
 		wp_enqueue_script(

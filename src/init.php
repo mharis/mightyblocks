@@ -43,7 +43,7 @@ add_action( 'enqueue_block_assets', 'mightyblocks_block_assets' );
 function mightyblocks_editor_assets() {
 	$options = array();
 	$options[ 'plugin_url' ] = plugins_url( '/', dirname( __FILE__ ) );
-	
+
 	// Scripts.
 	wp_enqueue_script(
 		'mightyblocks-block-js',
@@ -73,16 +73,25 @@ function mightyblocks_editor_assets() {
 // Hook: Editor assets.
 add_action( 'enqueue_block_editor_assets', 'mightyblocks_editor_assets', 11 );
 
-function mightyblocks_plugin_path() {
+function mightyblocks_plugin_template_path() {
 	return apply_filters(
-		'mightyblocks_plugin_path',
+		'mightyblocks_plugin_template_path',
 		untrailingslashit( plugin_dir_path( dirname( __FILE__ ) ) )
+	);
+}
+
+function mightyblocks_plugin_template_url() {
+	return apply_filters(
+		'mightyblocks_plugin_template_url',
+		untrailingslashit( plugin_dir_url( dirname( __FILE__ ) ) )
 	);
 }
 
 function mightyblocks_locate_template( $template_name ) {
 	$template_path = '/mightyblocks/';
-	$plugin_path  = mightyblocks_plugin_path() . '/mightyblocks/';
+
+	$plugin_path  = mightyblocks_plugin_template_path() . '/mightyblocks/';
+	$plugin_url = mightyblocks_plugin_template_url() . '/mightyblocks/';
 
 	// Look within passed path within the theme - this is priority
 	$template = locate_template(
@@ -92,9 +101,12 @@ function mightyblocks_locate_template( $template_name ) {
 		)
 	);
 
-	// Modification: Get the template from this plugin, if it exists
+	if ( $template ) {
+		$template = untrailingslashit( get_stylesheet_directory_uri() ) . $template_path . $template_name;
+	}
+
 	if ( ! $template && file_exists( $plugin_path . $template_name ) ) {
-		$template = $plugin_path . $template_name;
+		$template = $plugin_url . $template_name;
 	}
 
 	// Return what we found
