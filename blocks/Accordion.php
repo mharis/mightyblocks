@@ -17,12 +17,17 @@ class Accordion {
 	}
 
 	public function editor_assets() {
-		$options = $this->register_controls();
+		$options = apply_filters(
+            'mightyblocks_' . $this->get_name() . '_settings',
+            $this->register_controls()
+        );
+
+		$template_path = mightyblocks_locate_template( 'video.js' );
 
 		// Scripts.
 		wp_enqueue_script(
 			'mightyblocks-block-accordion-template-js',
-			plugins_url( '/templates/accordion.js', dirname( __FILE__ ) )
+			$template_path
 		);
 
 		wp_localize_script(

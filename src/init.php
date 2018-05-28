@@ -73,7 +73,34 @@ function mightyblocks_editor_assets() {
 // Hook: Editor assets.
 add_action( 'enqueue_block_editor_assets', 'mightyblocks_editor_assets', 11 );
 
+function mightyblocks_plugin_path() {
+	return apply_filters(
+		'mightyblocks_plugin_path',
+		untrailingslashit( plugin_dir_path( dirname( __FILE__ ) ) )
+	);
+}
 
+function mightyblocks_locate_template( $template_name ) {
+	$template_path = '/mightyblocks/';
+	$plugin_path  = mightyblocks_plugin_path() . '/mightyblocks/';
+
+	// Look within passed path within the theme - this is priority
+	$template = locate_template(
+		array(
+			$template_path . $template_name,
+			$template_name
+		)
+	);
+
+	// Modification: Get the template from this plugin, if it exists
+	if ( ! $template && file_exists( $plugin_path . $template_name ) ) {
+		$template = $plugin_path . $template_name;
+	}
+
+	// Return what we found
+	return $template;
+}
+  
 include_once plugin_dir_path( dirname( __FILE__ ) ) . '/blocks/Accordion.php';
 $Accordion = new Accordion();
 
