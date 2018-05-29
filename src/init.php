@@ -117,4 +117,7 @@ include_once plugin_dir_path( dirname( __FILE__ ) ) . '/blocks/Accordion.php';
 $Accordion = new Accordion();
 
 include_once plugin_dir_path( dirname( __FILE__ ) ) . '/blocks/Video.php';
-$Accordion = new Video();
+$Video = new Video();
+
+include_once plugin_dir_path( dirname( __FILE__ ) ) . '/blocks/Button.php';
+$Accordion = new Button();
