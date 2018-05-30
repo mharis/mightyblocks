@@ -75,167 +75,93 @@ class Button {
 	 */
 	public function register_controls() {
         $options = array();
-
-        $options['type'] = array(
-            'label'         => __( 'Video Type', 'wpmightyblocks' ),
-            'description'   => '',
-            'type'          => 'SelectControl',
-            'default'       => 'youtube',
-            'options'       => array(
-				array(
-					'value' => 'youtube',
-					'label' => __( 'Youtube', 'wpmightyblocks' )
-				),
-				array(
-					'value' => 'vimeo',
-					'label' => __( 'Vimeo', 'wpmightyblocks' )
-				)
-            )
-        );
         
-        $options['ytlink'] = array(
-            'label'         => __( 'Video Link', 'wpmightyblocks' ),
+        $options['title'] = array(
+            'label'         => __( 'title', 'wpmightyblocks' ),
             'description'   => '',
-            'type'          => 'TextControl',
-            'default'       => 'https://www.youtube.com/watch?v=2MpUj-Aua48',
-            'conditions'    => array(
-                'show' => array(
-                    array(
-                        'field' => 'type',
-                        'value' => 'youtube'
-                    )
-                )
-            )
+            'type'          => 'PlainText',
+            'default'       => 'Click here',
+            'placeholder'   => '',
         );
 
-        $options['vimeolink'] = array(
-            'label'         => __( 'Video Link', 'wpmightyblocks' ),
+        $options['link'] = array(
+            'label'         => __( 'Button Link', 'wpmightyblocks' ),
             'description'   => '',
             'type'          => 'TextControl',
-            'default'       => 'https://vimeo.com/270821275',
-            'conditions'    => array(
-                'show' => array(
-                    array(
-                        'field' => 'type',
-                        'value' => 'vimeo'
-                    )
-                )
-            )
+            'default'       => '#',
         );
         
-        $options['autoplay'] = array(
-            'label'         => __( 'Autoplay', 'wpmightyblocks' ),
-            'description'   => 'Check to autoplay video on load.',
+        $options['newwindow'] = array(
+            'label'         => __( 'Open link in new window', 'wpmightyblocks' ),
+            'description'   => 'Check to open link in a new window.',
             'type'          => 'ToggleControl',
             'default'       => false
         );
 
-        $options['loop'] = array(
-            'label'         => __( 'Loop', 'wpmightyblocks' ),
-            'description'   => 'Check to loop video.',
+        $options['nofollow'] = array(
+            'label'         => __( 'Add Nofollow', 'wpmightyblocks' ),
+            'description'   => 'Check to restrict search engines from following this link.',
             'type'          => 'ToggleControl',
-            'default'       => false,
-            'conditions'    => array(
-                'show' => array(
-                    array(
-                        'field' => 'type',
-                        'value' => 'vimeo'
-                    )
-                )
+            'default'       => false
+        );
+
+        $options['size'] = array(
+            'label'         => __( 'Button Size', 'wpmightyblocks' ),
+            'description'   => '',
+            'type'          => 'SelectControl',
+            'default'       => 's',
+            'options'       => array(
+				array(
+					'value' => 'xs',
+					'label' => __( 'Extra Small', 'wpmightyblocks' )
+                ),
+				array(
+					'value' => 's',
+					'label' => __( 'Small', 'wpmightyblocks' )
+				),
+				array(
+					'value' => 'm',
+					'label' => __( 'Medium', 'wpmightyblocks' )
+                ),
+				array(
+					'value' => 'l',
+					'label' => __( 'Large', 'wpmightyblocks' )
+                ),
+				array(
+					'value' => 'xl',
+					'label' => __( 'Extra Large', 'wpmightyblocks' )
+				),
             )
         );
 
-        $options['controlsColor'] = array(
-            'label'         => __( 'Controls Color', 'wpmightyblocks' ),
+        $options['backgroundColor'] = array(
+            'label'         => __( 'Background Color', 'wpmightyblocks' ),
             'description'   => '',
             'type'          => 'PanelColor',
-            'default'       => '',
-            'conditions'    => array(
-                'show' => array(
-                    array(
-                        'field' => 'type',
-                        'value' => 'vimeo'
-                    )
-                )
-            )
+            'default'       => '#54595f',
         );
 
-        $options['intro'] = array(
-            'label'         => __( 'Intro Details', 'wpmightyblocks' ),
-            'description'   => 'Check to show intro details before playing the video.',
-            'type'          => 'ToggleControl',
-            'default'       => false,
-            'conditions'    => array(
-                'show' => array(
-                    array(
-                        'field' => 'type',
-                        'value' => 'vimeo'
-                    )
-                )
-            )
+        $options['textColor'] = array(
+            'label'         => __( 'Text Color', 'wpmightyblocks' ),
+            'description'   => '',
+            'type'          => 'PanelColor',
+            'default'       => '#ffffff',
         );
-        
-        $options['suggested'] = array(
-            'label'         => __( 'Suggested Videos', 'wpmightyblocks' ),
-            'description'   => 'Check to show suggested video after the video ends.',
-            'type'          => 'ToggleControl',
-            'default'       => false,
-            'conditions'    => array(
-                'show' => array(
-                    array(
-                        'field' => 'type',
-                        'value' => 'youtube'
-                    )
-                )
-            )
+
+        $options['hoverBackgroundColor'] = array(
+            'label'         => __( 'Hover Background Color', 'wpmightyblocks' ),
+            'description'   => '',
+            'type'          => 'PanelColor',
+            'default'       => '#000000',
         );
-        
-        $options['controls'] = array(
-            'label'         => __( 'Player Controls', 'wpmightyblocks' ),
-            'description'   => 'Check to show player controls.',
-            'type'          => 'ToggleControl',
-            'default'       => true,
-            'conditions'    => array(
-                'show' => array(
-                    array(
-                        'field' => 'type',
-                        'value' => 'youtube'
-                    )
-                )
-            )
-        );
-        
-        $options['title'] = array(
-            'label'         => __( 'Title & Actions', 'wpmightyblocks' ),
-            'description'   => 'Check to show title on video and other video actions.',
-            'type'          => 'ToggleControl',
-            'default'       => true,
-            'conditions'    => array(
-                'show' => array(
-                    array(
-                        'field' => 'type',
-                        'value' => 'youtube'
-                    )
-                )
-            )
-        );
-        
-        $options['mute'] = array(
-            'label'         => __( 'Mute Video', 'wpmightyblocks' ),
-            'description'   => 'Check to show mute video on load.',
-            'type'          => 'ToggleControl',
-            'default'       => false,
-            'conditions'    => array(
-                'show' => array(
-                    array(
-                        'field' => 'type',
-                        'value' => 'youtube'
-                    )
-                )
-            )
+
+        $options['hoverTextColor'] = array(
+            'label'         => __( 'Hover Text Color', 'wpmightyblocks' ),
+            'description'   => '',
+            'type'          => 'PanelColor',
+            'default'       => '#ffffff',
         );
     
-		
 		return $options;
     }
 }

@@ -1,5 +1,4 @@
 const {
-	InspectorControls,
 	ColorPalette,
 } = wp.blocks;
 
@@ -11,6 +10,10 @@ const {
 	IconButton,
 	TextControl
 } = wp.components;
+
+const {
+	InspectorControls,
+} = wp.editor;
 
 const { Component } = wp.element;
 
