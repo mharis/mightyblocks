@@ -173,7 +173,7 @@ class Button {
             'label'         => __( 'Border Radius', 'wpmightyblocks' ),
             'description'   => __( '(In Pixels)', 'wpmightyblocks' ),
             'type'          => 'DimensionsControl',
-            'default'       => '',
+            'default'       => '3 3 3 3',
             'unit'          => 'px',
             'min'           => '0'
         );
