@@ -1,0 +1,21 @@
+#editor .components-mb-dimension-control__input {
+    width: 25%;
+    margin: 0;
+    float: left;
+
+    input {
+        width: 100%;
+        border-right-width: 0;
+    }
+
+    label {
+        text-align: center;
+        display: inline-block;
+        width: 100%;
+        font-size: 10px;
+    }
+}
+
+#editor .components-base-control__field :last-child input {
+    border-right-width: 1px !important;
+}

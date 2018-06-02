@@ -8,7 +8,7 @@ const {
 	RangeControl,
 	SelectControl,
 	IconButton,
-	TextControl
+	TextControl,
 } = wp.components;
 
 const {
@@ -16,6 +16,9 @@ const {
 } = wp.editor;
 
 const { Component } = wp.element;
+
+
+import DimensionsControl from './dimensions-control';
 
 class MightyBlocksInspectorControls extends Component {
     constructor( props ) {
@@ -69,7 +72,7 @@ class MightyBlocksInspectorControls extends Component {
 						} else if ( option['type'] === 'TextControl' ) {
 							return <TextControl
 								label={ option['label'] }
-								description={ option['description'] }
+								help={ option['description'] }
 								value={ attributes[ index ] }
 								onChange={ ( value ) => setAttributes( { [index]: value } ) }
 							/>;
@@ -92,6 +95,25 @@ class MightyBlocksInspectorControls extends Component {
 									onChange={ ( value ) => setAttributes( { [index]: value } ) }
 								/>
 							</PanelColor>;
+						} else if ( option['type'] === 'RangeControl' ) {
+							return <RangeControl
+								label={ option['label'] }
+								help={ option['description'] }
+								value={ attributes[ index ] }
+								onChange={ ( value ) => setAttributes( { [index]: value } ) }
+								min={ option['min'] }
+								max={ option['max'] }
+								step={ option['step'] }
+							/>;
+						} else if ( option['type'] === 'DimensionsControl' ) {
+							return <DimensionsControl
+								label={ option['label'] }
+								help={ option['description'] }
+								unit={ option['unit'] }
+								min={ option['min'] }
+								value={ attributes[ index ] }
+								onChange={ ( value ) => setAttributes( { [index]: value } ) }
+							/>;
 						}
 					})
 				}
