@@ -9,6 +9,7 @@ const {
 	SelectControl,
 	IconButton,
 	TextControl,
+	PanelBody,
 } = wp.components;
 
 const {
