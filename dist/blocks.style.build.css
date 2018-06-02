@@ -143,7 +143,8 @@
  * CSS for both Frontend+Backend.
  */
 .wp-block-mightyblocks-block-button a {
-  display: inline-block; }
+  display: inline-block;
+  text-decoration: none; }
 
 .wp-block-mightyblocks-block-button-size-xs {
   border-radius: 2px;
@@ -169,3 +170,28 @@
   border-radius: 6px;
   font-size: 20px;
   padding: 25px 50px; }
+
+.wp-block-mightyblocks-block-button-fullwidth {
+  width: 100%;
+  text-align: center; }
+/**
+ * #.# Common SCSS
+ *
+ * Can include things like variables and mixins
+ * that are used across the project.
+*/
+#editor .components-mb-dimension-control__input {
+  width: 25%;
+  margin: 0;
+  float: left; }
+  #editor .components-mb-dimension-control__input input {
+    width: 100%;
+    border-right-width: 0; }
+  #editor .components-mb-dimension-control__input label {
+    text-align: center;
+    display: inline-block;
+    width: 100%;
+    font-size: 10px; }
+
+#editor .components-base-control__field :last-child input {
+  border-right-width: 1px !important; }

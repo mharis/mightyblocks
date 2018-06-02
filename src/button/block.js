@@ -12,11 +12,10 @@ const { __ } = wp.i18n;
 
 const {
 	registerBlockType,
-	RichText
 } = wp.blocks;
 
 const {
-	PlainText,
+	RichText,
 } = wp.editor;
 
 const { Component } = wp.element;
@@ -43,6 +42,9 @@ Object.keys( options ).map( index => {
 	attributes[ index ] = { type: 'string', default: option['default'] };
 });
 
+
+attributes['blockId'] = { type: 'string', default: '' };
+
 registerBlockType( 'mightyblocks/block-button', {
 	title: __( 'Button' ),
 	icon: 'laptop',
@@ -51,17 +53,20 @@ registerBlockType( 'mightyblocks/block-button', {
 		__( 'mightyblocks' ),
 		__( 'button' ),
 	],
+	anchor: true,
 
 	attributes,
 
 	edit: function( { id, isSelected, attributes, className, setAttributes } ) {
-		attributes.blockId = id;
+		setAttributes( { blockId: id } );
 
 		const inspectorControls = <MightyBlocksInspectorControls
 			attributes={ attributes }
 			options={ options }
 			setAttributes={ setAttributes }
 		/>;
+
+		console.log( attributes );
 		
         return [
 			inspectorControls,
@@ -95,14 +100,18 @@ class MightyBlocksButton extends Component {
 			editing
 		} = this.props;
 
-		const template = ReactHtmlParser( wpMightyBlocksButtonTemplate( className, attributes ), {
+		const template = ReactHtmlParser( wpMightyBlocksButtonTemplate( className, attributes, editing ), {
 			transform: node => {
 				if ( node.type === 'tag' && node.name === 'div' ) {
 					if ( node.attribs['data-type'] === 'title' ) {
 						if ( editing === true ) {
-							return <PlainText
+							return <RichText
+								tagName='span'
+								placeholder={ __( 'Add text…' ) }
 								value={ attributes['title'] }
 								onChange={ ( value ) => setAttributes( { title: value } ) }
+								formattingControls={ [ 'bold', 'italic', 'strikethrough' ] }
+								keepPlaceholderOnFocus
 							/>;
 						} else {
 							return attributes['title'];
@@ -110,7 +119,7 @@ class MightyBlocksButton extends Component {
 					}
 				}
 			}
-		});
+		} );
 
 		return template;
 	}

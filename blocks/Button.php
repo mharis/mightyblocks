@@ -134,6 +134,13 @@ class Button {
             )
         );
 
+        $options['fullwidth'] = array(
+            'label'         => __( 'Full Width Button', 'wpmightyblocks' ),
+            'description'   => 'Make button full width.',
+            'type'          => 'ToggleControl',
+            'default'       => false
+        );
+
         $options['backgroundColor'] = array(
             'label'         => __( 'Background Color', 'wpmightyblocks' ),
             'description'   => '',
@@ -160,6 +167,15 @@ class Button {
             'description'   => '',
             'type'          => 'PanelColor',
             'default'       => '#ffffff',
+        );
+
+        $options['borderradius'] = array(
+            'label'         => __( 'Border Radius', 'wpmightyblocks' ),
+            'description'   => __( '(In Pixels)', 'wpmightyblocks' ),
+            'type'          => 'DimensionsControl',
+            'default'       => '',
+            'unit'          => 'px',
+            'min'           => '0'
         );
     
 		return $options;

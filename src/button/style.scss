@@ -6,6 +6,7 @@
 
 .wp-block-mightyblocks-block-button a {
     display: inline-block;
+    text-decoration: none;
 }
 
 .wp-block-mightyblocks-block-button-size-xs {
@@ -36,4 +37,9 @@
     border-radius: 6px;
     font-size: 20px;
     padding: 25px 50px;
+}
+
+.wp-block-mightyblocks-block-button-fullwidth {
+    width: 100%;
+    text-align: center;
 }
