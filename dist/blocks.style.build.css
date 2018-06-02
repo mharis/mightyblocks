@@ -147,27 +147,22 @@
   text-decoration: none; }
 
 .wp-block-mightyblocks-block-button-size-xs {
-  border-radius: 2px;
   font-size: 13px;
   padding: 10px 20px; }
 
 .wp-block-mightyblocks-block-button-size-s {
-  border-radius: 3px;
   font-size: 15px;
   padding: 12px 24px; }
 
 .wp-block-mightyblocks-block-button-size-m {
-  border-radius: 4px;
   font-size: 16px;
   padding: 15px 30px; }
 
 .wp-block-mightyblocks-block-button-size-l {
-  border-radius: 5px;
   font-size: 18px;
   padding: 20px 40px; }
 
 .wp-block-mightyblocks-block-button-size-xl {
-  border-radius: 6px;
   font-size: 20px;
   padding: 25px 50px; }
 
