@@ -7,6 +7,7 @@ import './style.scss';
 import './editor.scss';
 import ReactHtmlParser, { processNodes, convertNodeToElement, htmlparser2 } from 'react-html-parser';
 import MightyBlocksInspectorControls from '../common/controls.js';
+import SetInitialAttributes from '../helpers/set-initial-attributes';
 
 const { __ } = wp.i18n;
 
@@ -34,14 +35,8 @@ const { Component } = wp.element;
  *                             registered; otherwise `undefined`.
  */
 
-let attributes = {};
 const options = mightyblocksButton;
-
-Object.keys( options ).map( index => {
-	const option = options[ index ];
-	attributes[ index ] = { type: 'string', default: option['default'] };
-});
-
+let attributes = SetInitialAttributes( options );
 
 attributes['blockId'] = { type: 'string', default: '' };
 
