@@ -141,34 +141,6 @@ class Button {
             'default'       => false
         );
 
-        $options['backgroundColor'] = array(
-            'label'         => __( 'Background Color', 'wpmightyblocks' ),
-            'description'   => '',
-            'type'          => 'PanelColor',
-            'default'       => '#54595f',
-        );
-
-        $options['textColor'] = array(
-            'label'         => __( 'Text Color', 'wpmightyblocks' ),
-            'description'   => '',
-            'type'          => 'PanelColor',
-            'default'       => '#ffffff',
-        );
-
-        $options['hoverBackgroundColor'] = array(
-            'label'         => __( 'Hover Background Color', 'wpmightyblocks' ),
-            'description'   => '',
-            'type'          => 'PanelColor',
-            'default'       => '#000000',
-        );
-
-        $options['hoverTextColor'] = array(
-            'label'         => __( 'Hover Text Color', 'wpmightyblocks' ),
-            'description'   => '',
-            'type'          => 'PanelColor',
-            'default'       => '#ffffff',
-        );
-
         $options['borderradius'] = array(
             'label'         => __( 'Border Radius', 'wpmightyblocks' ),
             'description'   => __( '(In Pixels)', 'wpmightyblocks' ),
@@ -176,6 +148,45 @@ class Button {
             'default'       => '3 3 3 3',
             'unit'          => 'px',
             'min'           => '0'
+        );
+
+        $options['normalStyle'] = array(
+            'type'       => 'Section',
+            'title'         => __( 'Normal Styles', 'wpmightyblocks' )
+        );
+
+        $options['normalStyle']['fields']['backgroundColor'] = array(
+            'label'         => __( 'Background Color', 'wpmightyblocks' ),
+            'description'   => '',
+            'type'          => 'PanelColor',
+            'default'       => '#54595f',
+        );
+
+        $options['normalStyle']['fields']['textColor'] = array(
+            'label'         => __( 'Text Color', 'wpmightyblocks' ),
+            'description'   => '',
+            'type'          => 'PanelColor',
+            'default'       => '#ffffff',
+        );
+
+        $options['hoverStyle'] = array(
+            'type'      => 'Section',
+            'title'     => __( 'Hover Styles', 'wpmightyblocks' )
+        );
+
+
+        $options['hoverStyle']['fields']['hoverBackgroundColor'] = array(
+            'label'         => __( 'Hover Background Color', 'wpmightyblocks' ),
+            'description'   => '',
+            'type'          => 'PanelColor',
+            'default'       => '#000000',
+        );
+
+        $options['hoverStyle']['fields']['hoverTextColor'] = array(
+            'label'         => __( 'Hover Text Color', 'wpmightyblocks' ),
+            'description'   => '',
+            'type'          => 'PanelColor',
+            'default'       => '#ffffff',
         );
     
 		return $options;
