@@ -24,6 +24,12 @@ function wpMightyBlocksIconTemplate( className, attributes, editing ) {
     </div>`;*/
 
     return `<div class="${ className } wp-block-mightyblocks-block-icon-${ attributes['blockId'] }">
+        <style type="text/css" scoped="scoped">
+        .${ className }-${ attributes['blockId'] } i {
+            font-size: ${ attributes['size'] };
+        }
+        </style>
+
         <i class="fa fa-star" aria-hidden="true"></i>
     </div>`;
 }

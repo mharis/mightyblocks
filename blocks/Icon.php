@@ -82,7 +82,36 @@ class Icon {
             'type'          => 'IconControl',
             'default'       => 'fas fa-user',
 		);
+
+		// @TODO: Add link options to panel
+        $options['link'] = array(
+            'label'         => __( 'Button Link', 'wpmightyblocks' ),
+            'description'   => '',
+            'type'          => 'TextControl',
+            'default'       => '#',
+        );
+        
+        $options['newwindow'] = array(
+            'label'         => __( 'Open link in new window', 'wpmightyblocks' ),
+            'description'   => 'Check to open link in a new window.',
+            'type'          => 'ToggleControl',
+            'default'       => false
+        );
+
+        $options['nofollow'] = array(
+            'label'         => __( 'Add Nofollow', 'wpmightyblocks' ),
+            'description'   => 'Check to restrict search engines from following this link.',
+            'type'          => 'ToggleControl',
+            'default'       => false
+		);
 		
+		$options['size'] = array(
+            'label'         => __( 'Size', 'wpmightyblocks' ),
+            'description'   => '',
+            'type'          => 'TextControl',
+			'default'       => '50px',
+		);
+
 		return $options;
     }
 }
