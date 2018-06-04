@@ -15,8 +15,8 @@ const {
 
 const { Component } = wp.element;
 
-
 import DimensionsControl from './dimensions-control';
+import IconControl from './icon-control';
 
 class MightyBlocksInspectorControls extends Component {
     constructor( props ) {
@@ -125,8 +125,14 @@ class MightyBlocksInspectorControls extends Component {
 				value={ attributes[ index ] }
 				onChange={ ( value ) => setAttributes( { [ index ]: value } ) }
 			/>;
+		} else if ( option['type'] === 'IconControl' ) {
+			return <IconControl
+				label={ option['label'] }
+				help={ option['description'] }
+				value={ attributes[ index ] }
+				onChange={ ( value ) => setAttributes( { [ index ]: value } ) }
+			/>;
 		} else if ( option['type'] === 'Section' ) {
-			
 			return <PanelBody
 				title={ option['title'] }
 				initialOpen={ false }

@@ -15,3 +15,4 @@ import './tabs/block.js';
 import './accordion/block.js';
 import './video/block.js';
 import './button/block.js';
+import './icon/block.js';

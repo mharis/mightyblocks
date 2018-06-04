@@ -10,7 +10,9 @@
   "dependencies": {
     "cgb-scripts": "1.9.6",
     "react": "^16.3.2",
+    "react-dom": "^16.4.0",
     "react-html-parser": "^2.0.2",
+    "react-select": "^1.2.1",
     "react-tabs": "^2.2.2",
     "webfonts-generator": "^0.4.0"
   }

@@ -21,6 +21,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 function mightyblocks_block_assets() {
 	// Styles.
 	wp_enqueue_style(
+		'font-awesome',
+		plugins_url( 'dist/fontawesome/fontawesome-all.css', dirname( __FILE__ ) )
+	);
+	
+	wp_enqueue_style(
 		'mightyblocks-style-css',
 		plugins_url( 'dist/blocks.style.build.css', dirname( __FILE__ ) ),
 		array( 'wp-blocks' )
@@ -58,6 +63,11 @@ function mightyblocks_editor_assets() {
 	);
 
 	// Styles.
+	wp_enqueue_style(
+		'font-awesome',
+		plugins_url( 'dist/fontawesome/fontawesome-all.css', dirname( __FILE__ ) )
+	);
+
 	wp_enqueue_style(
 		'mightyblocks-block-editor-css',
 		plugins_url( 'dist/blocks.editor.build.css', dirname( __FILE__ ) ),
@@ -121,3 +131,6 @@ $Video = new Video();
 
 include_once plugin_dir_path( dirname( __FILE__ ) ) . '/blocks/Button.php';
 $Accordion = new Button();
+
+include_once plugin_dir_path( dirname( __FILE__ ) ) . '/blocks/Icon.php';
+$Icon = new Icon();
