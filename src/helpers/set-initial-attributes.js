@@ -3,8 +3,15 @@ function SetInitialAttributes( options ) {
 
 	Object.keys( options ).map( index => {
 		const option = options[ index ];
-		attributes[ index ] = { type: 'string', default: option['default'] };
+		
+		if ( option['type'] === 'Section' ) {
+			attributes = Object.assign( attributes, SetInitialAttributes( option['fields'] ) );
+		} else {
+			attributes[ index ] = { type: 'string', default: option['default'] };
+		}
 	});
+
+	console.log( attributes );
 
 	return attributes;
 }
