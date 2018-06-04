@@ -1,8 +1,4 @@
 const {
-	ColorPalette,
-} = wp.blocks;
-
-const {
 	ToggleControl,
 	PanelColor,
 	RangeControl,
@@ -14,6 +10,7 @@ const {
 
 const {
 	InspectorControls,
+	ColorPalette,
 } = wp.editor;
 
 const { Component } = wp.element;
