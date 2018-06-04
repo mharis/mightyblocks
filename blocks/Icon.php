@@ -83,7 +83,7 @@ class Icon {
             'default'       => 'fas fa-user',
 		);
 
-		// @TODO: Add link options to panel
+		// TODO: Add link options to panel
         $options['link'] = array(
             'label'         => __( 'Button Link', 'wpmightyblocks' ),
             'description'   => '',
