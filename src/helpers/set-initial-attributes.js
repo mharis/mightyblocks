@@ -1,10 +1,12 @@
 function SetInitialAttributes( options ) {
 	let attributes = {};
 
-	return Object.keys( options ).map( index => {
+	Object.keys( options ).map( index => {
 		const option = options[ index ];
-		return attributes[ index ] = { type: 'string', default: option['default'] };
+		attributes[ index ] = { type: 'string', default: option['default'] };
 	});
+
+	return attributes;
 }
 
 export default SetInitialAttributes;
