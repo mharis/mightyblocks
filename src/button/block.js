@@ -61,8 +61,6 @@ registerBlockType( 'mightyblocks/block-button', {
 			setAttributes={ setAttributes }
 		/>;
 
-		console.log( attributes );
-		
         return [
 			inspectorControls,
 			<MightyBlocksButton

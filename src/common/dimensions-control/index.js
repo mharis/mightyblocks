@@ -9,7 +9,6 @@ function DimensionsControl( { label, value, unit, help, className, instanceId, o
 	const id = `inspector-mb-dimension-control-${ instanceId }`;
 	let splitValues = value.split(' ');
 
-	console.log( splitValues[ 0 ], ! splitValues[ 0 ] );
 	if( ! splitValues[ 0 ] ) {
 		splitValues[ 0 ] = 0;
 	}
