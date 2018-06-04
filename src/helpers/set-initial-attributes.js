@@ -11,8 +11,6 @@ function SetInitialAttributes( options ) {
 		}
 	});
 
-	console.log( attributes );
-
 	return attributes;
 }
 
