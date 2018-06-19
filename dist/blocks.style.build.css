@@ -103,6 +103,22 @@
  *
  * CSS for both Frontend+Backend.
  */
+.wp-block-mightyblocks-block-icon .wp-block-mightyblocks-block-icon-icon {
+  display: inline-block;
+  border-style: solid; }
+
+.wp-block-mightyblocks-block-icon i {
+  width: 1em;
+  height: 1em;
+  display: block;
+  position: relative; }
+
+.wp-block-mightyblocks-block-icon i:before {
+  position: absolute;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+      -ms-transform: translateX(-50%);
+          transform: translateX(-50%); }
 /**
  * #.# Common SCSS
  *

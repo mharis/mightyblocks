@@ -1,4 +1,5 @@
 const {
+	BaseControl,
 	ToggleControl,
 	PanelColor,
 	RangeControl,
@@ -6,6 +7,8 @@ const {
 	IconButton,
 	TextControl,
 	PanelBody,
+	Button,
+	ButtonGroup,
 } = wp.components;
 
 const {
@@ -112,6 +115,7 @@ class MightyBlocksInspectorControls extends Component {
 				help={ option['description'] }
 				value={ attributes[ index ] }
 				onChange={ ( value ) => setAttributes( { [ index ]: value } ) }
+				initialPosition={ option['initialPosition'] }
 				min={ option['min'] }
 				max={ option['max'] }
 				step={ option['step'] }
@@ -132,6 +136,25 @@ class MightyBlocksInspectorControls extends Component {
 				value={ attributes[ index ] }
 				onChange={ ( value ) => setAttributes( { [ index ]: value } ) }
 			/>;
+		} else if ( option['type'] === 'ButtonGroup' ) {
+			return <BaseControl
+					label={ option['label'] }
+				>
+				<ButtonGroup aria-label={ option['label'] }>
+					{
+						Object.keys( option['options'] ).map( optIndex => {
+							const opt = option['options'][ optIndex ];
+							return <Button
+								isLarge
+								isPrimary={ attributes[ index ] === opt['value'] }
+								onClick={ () => setAttributes( { [ index ]: opt['value'] } ) }
+							>
+								{ opt['label'] }
+							</Button>
+						})
+					}
+				</ButtonGroup>
+			</BaseControl>;
 		} else if ( option['type'] === 'Section' ) {
 			return <PanelBody
 				title={ option['title'] }

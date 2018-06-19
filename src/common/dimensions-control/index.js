@@ -5,7 +5,7 @@ const {
 
 import './style.scss';
 
-function DimensionsControl( { label, value, unit, help, className, instanceId, onChange, ...props } ) {
+function DimensionsControl( { label, value, help, className, instanceId, onChange, ...props } ) {
 	const id = `inspector-mb-dimension-control-${ instanceId }`;
 	let splitValues = value.split(' ');
 
@@ -35,12 +35,7 @@ function DimensionsControl( { label, value, unit, help, className, instanceId, o
 		const slot = parseInt( event.target.getAttribute('data-dimension-slot') );
 		splitValues[ slot ] = value;
 
-		
-		const returnValue = splitValues.map( ( value, index ) => {
-			value = parseInt( value );
-			value = value + unit;
-			return value;
-		}).join(' ');
+		const returnValue = splitValues.join(' ');
 
 		onChange( returnValue );
     }
@@ -49,10 +44,10 @@ function DimensionsControl( { label, value, unit, help, className, instanceId, o
 		<BaseControl label={ label } id={ id } help={ help } className={ className }>
 			<div className="components-mb-dimension-control__input">
 				<input
-					type="number"
+					type="text"
 					id={ `${id}-0` }
 					data-dimension-slot="0"
-					value={ parseInt( splitValues[0] ) }
+					value={ splitValues[0] }
 					onChange={ onChangeValue }
 					aria-describedby={ !! help ? id + '__help' : undefined }
 					{ ...props }
@@ -61,10 +56,10 @@ function DimensionsControl( { label, value, unit, help, className, instanceId, o
 			</div>
 			<div className="components-mb-dimension-control__input">
 				<input
-					type="number"
+					type="text"
 					id={ `${id}-1` }
 					data-dimension-slot="1"
-					value={ parseInt( splitValues[1] ) }
+					value={ splitValues[1] }
 					onChange={ onChangeValue }
 					aria-describedby={ !! help ? id + '__help' : undefined }
 					{ ...props }
@@ -73,10 +68,10 @@ function DimensionsControl( { label, value, unit, help, className, instanceId, o
 			</div>
 			<div className="components-mb-dimension-control__input">
 				<input
-					type="number"
+					type="text"
 					id={ `${id}-2` }
 					data-dimension-slot="2"
-					value={ parseInt( splitValues[2] ) }
+					value={ splitValues[2] }
 					onChange={ onChangeValue }
 					aria-describedby={ !! help ? id + '__help' : undefined }
 					{ ...props }
@@ -85,10 +80,10 @@ function DimensionsControl( { label, value, unit, help, className, instanceId, o
 			</div>
 			<div className="components-mb-dimension-control__input">
 				<input
-					type="number"
+					type="text"
 					id={ `${id}-3` }
 					data-dimension-slot="3"
-					value={ parseInt( splitValues[3] ) }
+					value={ splitValues[3] }
 					onChange={ onChangeValue }
 					aria-describedby={ !! help ? id + '__help' : undefined }
 					{ ...props }
