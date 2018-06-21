@@ -134,3 +134,6 @@ $Accordion = new Button();
 
 include_once plugin_dir_path( dirname( __FILE__ ) ) . '/blocks/Icon.php';
 $Icon = new Icon();
+
+include_once plugin_dir_path( dirname( __FILE__ ) ) . '/blocks/ContentBox.php';
+$ContentBox = new ContentBox();

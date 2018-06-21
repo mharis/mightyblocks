@@ -3,23 +3,3 @@
  *
  * CSS for both Frontend+Backend.
  */
-
-.wp-block-mightyblocks-block-icon {
-    .wp-block-mightyblocks-block-icon-icon {
-        display: inline-block;
-        border-style: solid;
-    }
-
-    i {
-        width: 1em;
-        height: 1em;
-        display: block;
-        position: relative;
-    }
-
-    i:before {
-        position: absolute;
-        left: 50%;
-        transform: translateX(-50%);
-    }
-}

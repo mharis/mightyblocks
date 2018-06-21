@@ -55,7 +55,12 @@ class MightyBlocksInspectorControls extends Component {
 		
 		let visible = true;
 
-		if ( option['type'] === 'PlainText' || option['type'] === 'RichText' ) {
+		if (
+			option['type'] === 'PlainText' ||
+			option['type'] === 'RichText' ||
+			option['type'] === 'MediaUpload' ||
+			option['type'] === 'AlignmentToolbar'
+		) {
 			visible = false;
 		}
 

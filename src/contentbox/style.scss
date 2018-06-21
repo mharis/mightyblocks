@@ -1,0 +1,37 @@
+/**
+ * #.# Styles
+ *
+ * CSS for both Frontend+Backend.
+ */
+
+ .wp-block-mightyblocks-block-contentbox {
+     &-center {
+         text-align: center;
+     }
+
+     &-left {
+        text-align: left;
+    }
+
+    &-right {
+        text-align: right;
+    }
+
+    &-icon {
+        display: inline-block;
+        border-style: solid;
+
+        i {
+            width: 1em;
+            height: 1em;
+            display: block;
+            position: relative;
+        }
+    
+        i:before {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+    }
+ }

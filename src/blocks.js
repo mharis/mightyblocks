@@ -16,3 +16,4 @@ import './accordion/block.js';
 import './video/block.js';
 import './button/block.js';
 import './icon/block.js';
+import './contentbox/block.js';

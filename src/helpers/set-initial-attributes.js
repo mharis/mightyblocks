@@ -7,6 +7,8 @@ function SetInitialAttributes( options ) {
 
 		if ( option['type'] === 'Section' ) {
 			attributes = Object.assign( attributes, SetInitialAttributes( option['fields'] ) );
+		} else if (option['type'] === 'MediaUpload' ) {
+			attributes[ index ] = { type: 'object', default: option['default'] };
 		} else {
 			attributes[ index ] = { type, default: option['default'] };
 		}
