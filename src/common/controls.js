@@ -9,14 +9,23 @@ const {
 	PanelBody,
 	Button,
 	ButtonGroup,
+	Toolbar,
 } = wp.components;
 
 const {
 	InspectorControls,
 	ColorPalette,
+	AlignmentToolbar,
 } = wp.editor;
 
-const { Component } = wp.element;
+const {
+	__,
+	sprintf,
+} = wp.i18n;
+
+const {
+	Component,
+} = wp.element;
 
 import DimensionsControl from './dimensions-control';
 import IconControl from './icon-control';
@@ -59,7 +68,7 @@ class MightyBlocksInspectorControls extends Component {
 			option['type'] === 'PlainText' ||
 			option['type'] === 'RichText' ||
 			option['type'] === 'MediaUpload' ||
-			option['type'] === 'AlignmentToolbar'
+			option['type'] === 'DataStorage'
 		) {
 			visible = false;
 		}
@@ -160,6 +169,29 @@ class MightyBlocksInspectorControls extends Component {
 					}
 				</ButtonGroup>
 			</BaseControl>;
+		} else if ( option['type'] === 'HeadingControl' ) {
+			return <div>
+				<p>{ option['label'] }</p>
+				<Toolbar
+					controls={
+						'123456'.split( '' ).map( ( level ) => ( {
+							icon: 'heading',
+							title: sprintf( __( 'Heading %s' ), level ),
+							isActive: 'H' + level === attributes[ index ],
+							onClick: () => setAttributes( { [ index ]: 'H' + level } ),
+							subscript: level
+						} ) )
+					}
+				/>
+			</div>;
+		}  else if ( option['type'] === 'AlignmentControl' ) {
+			return <div>
+				<p>{ option['label'] }</p>
+				<AlignmentToolbar
+					value={ attributes[ index ] }
+					onChange={ ( value ) => setAttributes( { [ index ]: value } ) }
+				/>
+			</div>;
 		} else if ( option['type'] === 'Section' ) {
 			return <PanelBody
 				title={ option['title'] }

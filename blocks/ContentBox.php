@@ -75,11 +75,6 @@ class ContentBox {
 	 */
 	public function register_controls() {
 		$options = array();
-
-        $options['alignment'] = array(
-            'type'          => 'AlignmentToolbar',
-            'default'       => 'center',
-		);
 		
         $options['title'] = array(
             'label'         => __( 'Title', 'wpmightyblocks' ),
@@ -97,6 +92,40 @@ class ContentBox {
             'placeholder'   => __( 'Add Content', 'wpmightyblocks' ),
 		);
 
+        $options['headingSettings'] = array(
+			'type'			=> 'Section',
+			'title'			=> __( 'Heading Settings', 'wpmightyblocks' )
+        );
+        
+		$options['headingSettings']['fields']['headingSize'] = array(
+            'label'         => __( 'Heading Size', 'wpmightyblocks' ),
+            'description'   => '',
+            'type'          => 'HeadingControl',
+            'default'       => 'H2',
+        );
+
+        $options['headingSettings']['fields']['headingAlignment'] = array(
+            'label'         => __( 'Alignment', 'wpmightyblocks' ),
+            'description'   => '',
+            'type'          => 'AlignmentControl',
+            'default'       => 'center',
+        );
+        
+        $options['headingSettings']['fields']['iconPadding2'] = array(
+            'label'         	=> __( 'Padding', 'wpmightyblocks' ),
+            'description'   	=> '',
+            'type'          	=> 'RangeControl',
+			'default'       	=> '15',
+			'initialPosition'	=> '15',
+			'min'				=> '0',
+			'max'				=> '100',
+		);
+        
+        /*$options['contentSettings'] = array(
+			'type'			=> 'Section',
+			'title'			=> __( 'Content Settings', 'wpmightyblocks' )
+        );*/
+        
 		$options['iconSettings'] = array(
 			'type'			=> 'Section',
 			'title'			=> __( 'Icon Settings', 'wpmightyblocks' )

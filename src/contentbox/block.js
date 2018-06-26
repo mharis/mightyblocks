@@ -9,7 +9,10 @@ import ReactHtmlParser, { processNodes, convertNodeToElement, htmlparser2 } from
 import MightyBlocksInspectorControls from '../common/controls.js';
 import SetInitialAttributes from '../helpers/set-initial-attributes';
 
-const { __ } = wp.i18n;
+const {
+	__,
+	sprintf,
+} = wp.i18n;
 
 const {
 	registerBlockType,
@@ -22,7 +25,13 @@ const {
 	AlignmentToolbar,
 } = wp.editor;
 
-const { Component } = wp.element;
+const {
+	Component,
+} = wp.element;
+
+const {
+	Toolbar,
+} = wp.components;
 
 /**
  * Register: a Gutenberg Block.
@@ -56,16 +65,7 @@ registerBlockType( 'mightyblocks/block-contentbox', {
 
 	attributes,
 
-	edit: function( { id, isSelected, attributes, className, setAttributes } ) {
-		const alignmentToolbar = (
-			<BlockControls>
-				<AlignmentToolbar
-					value={ attributes['alignment'] }
-					onChange={ ( value ) => setAttributes( { alignment: value } ) }
-				/>
-			</BlockControls>
-		);
-		
+	edit: ( { id, attributes, className, setAttributes } ) => {
 		setAttributes( { blockId: id } );
 
 		const inspectorControls = <MightyBlocksInspectorControls
@@ -75,7 +75,6 @@ registerBlockType( 'mightyblocks/block-contentbox', {
 		/>;
 
         return [
-			alignmentToolbar,
 			inspectorControls,
 			<MightyBlocksContentBox
 				className={ className }
@@ -86,8 +85,8 @@ registerBlockType( 'mightyblocks/block-contentbox', {
         ];
 	},
 
-	save( { attributes } ) {
-		return <MightyBlocksContentBox
+	save: ( { attributes } ) => {
+		<MightyBlocksContentBox
 			attributes={ attributes }
 			editing={ false }
 		/>
@@ -95,8 +94,8 @@ registerBlockType( 'mightyblocks/block-contentbox', {
 } );
 
 class MightyBlocksContentBox extends Component {
-	constructor(props) {
-		super(props);
+	constructor( props ) {
+		super( props );		
 	}
 
 	render() {
@@ -104,7 +103,7 @@ class MightyBlocksContentBox extends Component {
 			className,
 			attributes,
 			setAttributes,
-			editing
+			editing,
 		} = this.props;
 
 		const template = ReactHtmlParser( wpMightyBlocksContentBoxTemplate( className, attributes, editing ), {
@@ -130,15 +129,18 @@ class MightyBlocksContentBox extends Component {
 					} else if ( node.attribs['data-type'] === 'title' ) {
 						if ( editing === true ) {
 							return <RichText
-								tagName='h2'
+								tagName={ attributes['headingSize'] }
 								placeholder={ __( 'Heading' ) }
 								value={ attributes['title'] }
 								onChange={ ( value ) => setAttributes( { title: value } ) }
-								formattingControls={ [ 'bold', 'italic', 'strikethrough' ] }
+								formattingControls={ [ 'bold', 'italic', 'strikethrough', 'link' ] }
 								keepPlaceholderOnFocus
 							/>;
 						} else {
-							return attributes['title'];
+							return <RichText.Content
+								tagName={ attributes['headingSize'].toLowerCase() }
+								value={ attributes['title'] }
+							/>;
 						}
 					} else if ( node.attribs['data-type'] === 'content' ) {
 						if ( editing === true ) {
@@ -147,11 +149,14 @@ class MightyBlocksContentBox extends Component {
 								placeholder={ __( 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec in mi id ligula tempor luctus. In hac habitasse platea dictumst. Suspendisse egestas quam vel dictum ullamcorper.' ) }
 								value={ attributes['content'] }
 								onChange={ ( value ) => setAttributes( { content: value } ) }
-								formattingControls={ [ 'bold', 'italic', 'strikethrough' ] }
+								formattingControls={ [ 'bold', 'italic', 'strikethrough', 'link' ] }
 								keepPlaceholderOnFocus
 							/>;
 						} else {
-							return attributes['content'];
+							return <RichText.Content
+								tagName={ 'div' }
+								value={ attributes['content'] }
+							/>;
 						}
 					}
 				}
