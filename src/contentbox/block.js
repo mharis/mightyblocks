@@ -86,10 +86,10 @@ registerBlockType( 'mightyblocks/block-contentbox', {
 	},
 
 	save: ( { attributes } ) => {
-		<MightyBlocksContentBox
+		return <MightyBlocksContentBox
 			attributes={ attributes }
 			editing={ false }
-		/>
+		/>;
 	}
 } );
 
@@ -130,6 +130,7 @@ class MightyBlocksContentBox extends Component {
 						if ( editing === true ) {
 							return <RichText
 								tagName={ attributes['headingSize'] }
+								className={ `${ className }-heading-container` }
 								placeholder={ __( 'Heading' ) }
 								value={ attributes['title'] }
 								onChange={ ( value ) => setAttributes( { title: value } ) }
@@ -139,6 +140,7 @@ class MightyBlocksContentBox extends Component {
 						} else {
 							return <RichText.Content
 								tagName={ attributes['headingSize'].toLowerCase() }
+								className={ `${ className }-heading-container` }
 								value={ attributes['title'] }
 							/>;
 						}
@@ -146,6 +148,7 @@ class MightyBlocksContentBox extends Component {
 						if ( editing === true ) {
 							return <RichText
 								tagName='div'
+								className={ `${ className }-content-container` }
 								placeholder={ __( 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec in mi id ligula tempor luctus. In hac habitasse platea dictumst. Suspendisse egestas quam vel dictum ullamcorper.' ) }
 								value={ attributes['content'] }
 								onChange={ ( value ) => setAttributes( { content: value } ) }
@@ -155,6 +158,7 @@ class MightyBlocksContentBox extends Component {
 						} else {
 							return <RichText.Content
 								tagName={ 'div' }
+								className={ `${ className }-content-container` }
 								value={ attributes['content'] }
 							/>;
 						}

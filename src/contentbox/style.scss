@@ -5,22 +5,46 @@
  */
 
  .wp-block-mightyblocks-block-contentbox {
-     &-center {
-         text-align: center;
-     }
+    &-heading-center &-heading-container  {
+        text-align: center;
+    }
 
-     &-left {
+    &-heading-left &-heading-container {
         text-align: left;
     }
 
-    &-right {
+    &-heading-right &-heading-container {
+        text-align: right;
+    }
+
+    &-icon-center &-icon-container {
+        text-align: center;
+    }
+
+    &-icon-left &-icon-container {
+        text-align: left;
+    }
+
+    &-icon-right &-icon-container {
+        text-align: right;
+    }
+
+    &-content-center &-content-container {
+        text-align: center;
+    }
+
+    &-content-left &-content-container {
+        text-align: left;
+    }
+
+    &-content-right &-content-container {
         text-align: right;
     }
 
     &-icon {
         display: inline-block;
         border-style: solid;
-
+        
         i {
             width: 1em;
             height: 1em;

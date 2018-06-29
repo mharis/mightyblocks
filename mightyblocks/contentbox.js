@@ -8,7 +8,12 @@ function wpMightyBlocksContentBoxTemplate( className, attributes, editing ) {
     }
 
     if ( attributes['icon'] ) {
-        icon =  `<span class="${ className }-icon"><i class="${ attributes['icon'] }" aria-hidden="true"></i></span>`;
+        icon = `<div class="${ className }-icon-container">
+            <span class="${ className }-icon">
+                <i class="${ attributes['icon'] }" aria-hidden="true"></i>
+            </span>
+        </div>`;
+        
         graphic = icon;
         iconStyle = `.${ className }-${ attributes['blockId'] } .${ className }-icon {
             background-color: ${ attributes['iconPrimaryColor'] };
@@ -30,7 +35,7 @@ function wpMightyBlocksContentBoxTemplate( className, attributes, editing ) {
         }`;
     }
 
-    return `<div class="${ className } ${ className }-${ attributes['blockId'] } ${ className }-${ attributes['alignment'] }">
+    return `<div class="${ className } ${ className }-${ attributes['blockId'] } ${ className }-heading-${ attributes['headingAlignment'] } ${ className }-icon-${ attributes['iconAlignment'] } ${ className }-content-${ attributes['contentAlignment'] }">
         <style type="text/css" scoped="scoped">
         ${ iconStyle }
         </style>

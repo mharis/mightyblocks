@@ -662,13 +662,31 @@
  *
  * CSS for both Frontend+Backend.
  */
-.wp-block-mightyblocks-block-contentbox-center {
+.wp-block-mightyblocks-block-contentbox-heading-center .wp-block-mightyblocks-block-contentbox-heading-container {
   text-align: center; }
 
-.wp-block-mightyblocks-block-contentbox-left {
+.wp-block-mightyblocks-block-contentbox-heading-left .wp-block-mightyblocks-block-contentbox-heading-container {
   text-align: left; }
 
-.wp-block-mightyblocks-block-contentbox-right {
+.wp-block-mightyblocks-block-contentbox-heading-right .wp-block-mightyblocks-block-contentbox-heading-container {
+  text-align: right; }
+
+.wp-block-mightyblocks-block-contentbox-icon-center .wp-block-mightyblocks-block-contentbox-icon-container {
+  text-align: center; }
+
+.wp-block-mightyblocks-block-contentbox-icon-left .wp-block-mightyblocks-block-contentbox-icon-container {
+  text-align: left; }
+
+.wp-block-mightyblocks-block-contentbox-icon-right .wp-block-mightyblocks-block-contentbox-icon-container {
+  text-align: right; }
+
+.wp-block-mightyblocks-block-contentbox-content-center .wp-block-mightyblocks-block-contentbox-content-container {
+  text-align: center; }
+
+.wp-block-mightyblocks-block-contentbox-content-left .wp-block-mightyblocks-block-contentbox-content-container {
+  text-align: left; }
+
+.wp-block-mightyblocks-block-contentbox-content-right .wp-block-mightyblocks-block-contentbox-content-container {
   text-align: right; }
 
 .wp-block-mightyblocks-block-contentbox-icon {

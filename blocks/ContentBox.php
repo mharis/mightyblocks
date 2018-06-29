@@ -92,40 +92,6 @@ class ContentBox {
             'placeholder'   => __( 'Add Content', 'wpmightyblocks' ),
 		);
 
-        $options['headingSettings'] = array(
-			'type'			=> 'Section',
-			'title'			=> __( 'Heading Settings', 'wpmightyblocks' )
-        );
-        
-		$options['headingSettings']['fields']['headingSize'] = array(
-            'label'         => __( 'Heading Size', 'wpmightyblocks' ),
-            'description'   => '',
-            'type'          => 'HeadingControl',
-            'default'       => 'H2',
-        );
-
-        $options['headingSettings']['fields']['headingAlignment'] = array(
-            'label'         => __( 'Alignment', 'wpmightyblocks' ),
-            'description'   => '',
-            'type'          => 'AlignmentControl',
-            'default'       => 'center',
-        );
-        
-        $options['headingSettings']['fields']['iconPadding2'] = array(
-            'label'         	=> __( 'Padding', 'wpmightyblocks' ),
-            'description'   	=> '',
-            'type'          	=> 'RangeControl',
-			'default'       	=> '15',
-			'initialPosition'	=> '15',
-			'min'				=> '0',
-			'max'				=> '100',
-		);
-        
-        /*$options['contentSettings'] = array(
-			'type'			=> 'Section',
-			'title'			=> __( 'Content Settings', 'wpmightyblocks' )
-        );*/
-        
 		$options['iconSettings'] = array(
 			'type'			=> 'Section',
 			'title'			=> __( 'Icon Settings', 'wpmightyblocks' )
@@ -146,7 +112,15 @@ class ContentBox {
 			'default'       	=> '30',
 			'min'				=> '6',
 			'max'				=> '300',
-		);
+        );
+    
+        $options['iconSettings']['fields']['iconAlignment'] = array(
+            'label'         => __( 'Alignment', 'wpmightyblocks' ),
+            'description'   => '',
+            'type'          => 'AlignmentControl',
+            'default'       => 'center',
+        );
+        
 
         $options['iconSettings']['fields']['iconBorderwidth'] = array(
             'label'         => __( 'Border Width', 'wpmightyblocks' ),
@@ -184,7 +158,38 @@ class ContentBox {
 			'initialPosition'	=> '15',
 			'min'				=> '0',
 			'max'				=> '100',
-		);
+        );
+        
+        $options['headingSettings'] = array(
+			'type'			=> 'Section',
+			'title'			=> __( 'Heading Settings', 'wpmightyblocks' )
+        );
+        
+		$options['headingSettings']['fields']['headingSize'] = array(
+            'label'         => __( 'Heading Size', 'wpmightyblocks' ),
+            'description'   => '',
+            'type'          => 'HeadingControl',
+            'default'       => 'H2',
+        );
+
+        $options['headingSettings']['fields']['headingAlignment'] = array(
+            'label'         => __( 'Alignment', 'wpmightyblocks' ),
+            'description'   => '',
+            'type'          => 'AlignmentControl',
+            'default'       => 'center',
+        );
+        
+        $options['contentSettings'] = array(
+			'type'			=> 'Section',
+			'title'			=> __( 'Content Settings', 'wpmightyblocks' )
+        );
+        
+        $options['contentSettings']['fields']['contentAlignment'] = array(
+            'label'         => __( 'Alignment', 'wpmightyblocks' ),
+            'description'   => '',
+            'type'          => 'AlignmentControl',
+            'default'       => 'center',
+        );
 		
         $options['normalStyle'] = array(
             'type'       => 'Section',
