@@ -148,6 +148,7 @@ class MightyBlocksContentBox extends Component {
 						if ( editing === true ) {
 							return <RichText
 								tagName='div'
+								multiline='p'
 								className={ `${ className }-content-container` }
 								placeholder={ __( 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec in mi id ligula tempor luctus. In hac habitasse platea dictumst. Suspendisse egestas quam vel dictum ullamcorper.' ) }
 								value={ attributes['content'] }

@@ -236,7 +236,7 @@ class ContentBox {
 		);
 
         $options['linkSettings']['fields']['link'] = array(
-            'label'         => __( 'Button Link', 'wpmightyblocks' ),
+            'label'         => __( 'Link', 'wpmightyblocks' ),
             'description'   => '',
             'type'          => 'TextControl',
             'default'       => '',

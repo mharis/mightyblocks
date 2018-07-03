@@ -35,7 +35,11 @@ function wpMightyBlocksContentBoxTemplate( className, attributes, editing ) {
         }`;
     }
 
-    return `<div class="${ className } ${ className }-${ attributes['blockId'] } ${ className }-heading-${ attributes['headingAlignment'] } ${ className }-icon-${ attributes['iconAlignment'] } ${ className }-content-${ attributes['contentAlignment'] }">
+    return `<div
+        class="${ className } ${ className }-${ attributes['blockId'] } ${ className }-heading-${ attributes['headingAlignment'] } ${ className }-icon-${ attributes['iconAlignment'] } ${ className }-content-${ attributes['contentAlignment'] }"
+        data-link="${ attributes['link'] }"
+        data-newwindow="${ attributes['newwindow'] }"
+    >
         <style type="text/css" scoped="scoped">
         ${ iconStyle }
         </style>

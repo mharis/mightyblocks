@@ -35,6 +35,14 @@ function mightyblocks_block_assets() {
 		'mightyblocks-icon-font',
 		plugins_url( 'dist/mb-icon-font.css', dirname( __FILE__ ) )
 	);
+
+	if ( ! is_admin() ) {
+		wp_enqueue_script(
+			'mightyblocks-block-js',
+			plugins_url( '/dist/public.js', dirname( __FILE__ ) ),
+			array( 'jquery' )
+		);
+	}
 } // End function mightyblocks_block_assets().
 
 // Hook: Frontend assets.
@@ -137,3 +145,4 @@ $Icon = new Icon();
 
 include_once plugin_dir_path( dirname( __FILE__ ) ) . '/blocks/ContentBox.php';
 $ContentBox = new ContentBox();
+
