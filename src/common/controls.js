@@ -112,17 +112,13 @@ class MightyBlocksInspectorControls extends Component {
 				onChange={ ( value ) => setAttributes( { [ index ]: value } ) }
 			/>;
 		} else if ( option['type'] === 'PanelColor' ) {
-			return <PanelColor
-				title={ option['label'] }
-				colorValue={ attributes[ index ] }
-				initialOpen={ false }
-			>
+			return <BaseControl label={ option['label'] }>
 				<ColorPalette
 					label={ option['label']  }
 					value={ attributes[ index ] }
 					onChange={ ( value ) => setAttributes( { [ index ]: value } ) }
 				/>
-			</PanelColor>;
+			</BaseControl>;
 		} else if ( option['type'] === 'RangeControl' ) {
 			return <RangeControl
 				label={ option['label'] }
@@ -170,8 +166,7 @@ class MightyBlocksInspectorControls extends Component {
 				</ButtonGroup>
 			</BaseControl>;
 		} else if ( option['type'] === 'HeadingControl' ) {
-			return <div>
-				<p>{ option['label'] }</p>
+			return <BaseControl label={ option['label'] }>
 				<Toolbar
 					controls={
 						'123456'.split( '' ).map( ( level ) => ( {
@@ -183,15 +178,14 @@ class MightyBlocksInspectorControls extends Component {
 						} ) )
 					}
 				/>
-			</div>;
+			</BaseControl>;
 		}  else if ( option['type'] === 'AlignmentControl' ) {
-			return <div>
-				<p>{ option['label'] }</p>
+			return <BaseControl label={ option['label'] }>
 				<AlignmentToolbar
 					value={ attributes[ index ] }
 					onChange={ ( value ) => setAttributes( { [ index ]: value } ) }
 				/>
-			</div>;
+			</BaseControl>;
 		} else if ( option['type'] === 'Section' ) {
 			return <PanelBody
 				title={ option['title'] }

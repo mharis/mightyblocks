@@ -163,6 +163,22 @@ class MightyBlocksContentBox extends Component {
 								value={ attributes['content'] }
 							/>;
 						}
+					} else if ( node.attribs['data-type'] === 'button' && attributes['linkType'] === 'button' ) {
+						if ( editing === true ) {
+							return <RichText
+								tagName='div'
+								placeholder={ __( 'Click Here' ) }
+								value={ attributes['button'] }
+								onChange={ ( value ) => setAttributes( { button: value } ) }
+								formattingControls={ [ 'bold', 'italic', 'strikethrough', 'link' ] }
+								keepPlaceholderOnFocus
+							/>;
+						} else {
+							return <RichText.Content
+								tagName={ 'div' }
+								value={ attributes['button'] }
+							/>;
+						}
 					}
 				}
 			}

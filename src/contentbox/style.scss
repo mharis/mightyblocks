@@ -5,6 +5,8 @@
  */
 
  .wp-block-mightyblocks-block-contentbox {
+    overflow: hidden;
+    
     &-heading-center &-heading-container  {
         text-align: center;
     }
@@ -40,6 +42,18 @@
     &-content-right &-content-container {
         text-align: right;
     }
+    
+    &-button-center &-button {
+        text-align: center;
+    }
+
+    &-button-left &-button {
+        text-align: left;
+    }
+
+    &-button-right &-button {
+        text-align: right;
+    }
 
     &-icon {
         display: inline-block;
@@ -57,5 +71,44 @@
             left: 50%;
             transform: translateX(-50%);
         }
+    }
+
+    &-button {
+        overflow: hidden;
+    }
+
+    &-button a {
+        display: inline-block;
+        text-decoration: none;
+    }
+    
+    &-button-size-xs {
+        font-size: 13px;
+        padding: 10px 20px;
+    }
+    
+    &-button-size-s {
+        font-size: 15px;
+        padding: 12px 24px;
+    }
+    
+    &-button-size-m {
+        font-size: 16px;
+        padding: 15px 30px;
+    }
+    
+    &-button-size-l {
+        font-size: 18px;
+        padding: 20px 40px;
+    }
+    
+    &-button-size-xl {
+        font-size: 20px;
+        padding: 25px 50px;
+    }
+    
+    &-button-fullwidth {
+        width: 100%;
+        text-align: center;
     }
  }

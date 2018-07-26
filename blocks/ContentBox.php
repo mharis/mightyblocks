@@ -90,7 +90,26 @@ class ContentBox {
             'type'          => 'RichText',
             'default'       => '',
             'placeholder'   => __( 'Add Content', 'wpmightyblocks' ),
-		);
+        );
+        
+        $options['button'] = array(
+            'label'         => __( 'Button', 'wpmightyblocks' ),
+            'description'   => '',
+            'type'          => 'RichText',
+            'default'       => '',
+            'placeholder'   => __( 'Add Button', 'wpmightyblocks' ),
+        );
+        
+        $options['image'] = array(
+            'label'         => __( 'Image', 'wpmightyblocks' ),
+            'description'   => '',
+            'type'          => 'MediaUpload',
+            'default'       => array(
+				'id' => '',
+				'url' => plugins_url( 'dist/images/placeholder.png', dirname(__FILE__) ),
+			),
+            'placeholder'   => __( 'Edit Image', 'wpmightyblocks' ),
+        );
 
 		$options['iconSettings'] = array(
 			'type'			=> 'Section',
@@ -121,7 +140,6 @@ class ContentBox {
             'default'       => 'center',
         );
         
-
         $options['iconSettings']['fields']['iconBorderwidth'] = array(
             'label'         => __( 'Border Width', 'wpmightyblocks' ),
             'description'   => __( '(In Pixels)', 'wpmightyblocks' ),
@@ -159,6 +177,34 @@ class ContentBox {
 			'min'				=> '0',
 			'max'				=> '100',
         );
+
+        $options['iconSettings']['fields']['iconPrimaryColor'] = array(
+            'label'         => __( 'Icon Primary Color', 'wpmightyblocks' ),
+            'description'   => '',
+            'type'          => 'PanelColor',
+            'default'       => '#333333',
+        );
+
+        $options['iconSettings']['fields']['iconSecondaryColor'] = array(
+            'label'         => __( 'Icon Secondary Color', 'wpmightyblocks' ),
+            'description'   => '',
+            'type'          => 'PanelColor',
+            'default'       => '#FFFFFF',
+        );
+
+        $options['iconSettings']['fields']['iconHoverPrimaryColor'] = array(
+            'label'         => __( 'Icon Hover Primary Color', 'wpmightyblocks' ),
+            'description'   => '',
+            'type'          => 'PanelColor',
+            'default'       => '#555555',
+        );
+
+        $options['iconSettings']['fields']['iconHoverSecondaryColor'] = array(
+            'label'         => __( 'Icon Hover Secondary Color', 'wpmightyblocks' ),
+            'description'   => '',
+            'type'          => 'PanelColor',
+            'default'       => '#FFFFFF',
+		);
         
         $options['headingSettings'] = array(
 			'type'			=> 'Section',
@@ -178,6 +224,13 @@ class ContentBox {
             'type'          => 'AlignmentControl',
             'default'       => 'center',
         );
+
+        $options['headingSettings']['fields']['headingColor'] = array(
+            'label'         => __( 'Heading Color', 'wpmightyblocks' ),
+            'description'   => '',
+            'type'          => 'PanelColor',
+            'default'       => '',
+        );
         
         $options['contentSettings'] = array(
 			'type'			=> 'Section',
@@ -190,50 +243,42 @@ class ContentBox {
             'type'          => 'AlignmentControl',
             'default'       => 'center',
         );
-		
-        $options['normalStyle'] = array(
-            'type'       => 'Section',
-            'title'         => __( 'Normal Styles', 'wpmightyblocks' )
-        );
-
-        $options['normalStyle']['fields']['iconPrimaryColor'] = array(
-            'label'         => __( 'Icon Primary Color', 'wpmightyblocks' ),
+        
+        $options['contentSettings']['fields']['contentBackgroundColor'] = array(
+            'label'         => __( 'Background Color', 'wpmightyblocks' ),
             'description'   => '',
             'type'          => 'PanelColor',
-            'default'       => '#333333',
+            'default'       => '',
         );
 
-        $options['normalStyle']['fields']['iconSecondaryColor'] = array(
-            'label'         => __( 'Icon Secondary Color', 'wpmightyblocks' ),
+        $options['contentSettings']['fields']['contentTextColor'] = array(
+            'label'         => __( 'Text Color', 'wpmightyblocks' ),
             'description'   => '',
             'type'          => 'PanelColor',
-            'default'       => '#FFFFFF',
+            'default'       => '',
         );
 
-        $options['hoverStyle'] = array(
-            'type'      => 'Section',
-            'title'     => __( 'Hover Styles', 'wpmightyblocks' )
-        );
-
-
-        $options['hoverStyle']['fields']['iconHoverPrimaryColor'] = array(
-            'label'         => __( 'Icon Hover Primary Color', 'wpmightyblocks' ),
-            'description'   => '',
-            'type'          => 'PanelColor',
-            'default'       => '#555555',
-        );
-
-        $options['hoverStyle']['fields']['iconHoverSecondaryColor'] = array(
-            'label'         => __( 'Icon Hover Secondary Color', 'wpmightyblocks' ),
-            'description'   => '',
-            'type'          => 'PanelColor',
-            'default'       => '#FFFFFF',
-		);
-		
 		$options['linkSettings'] = array(
 			'type'			=> 'Section',
 			'title'			=> __( 'Link Settings', 'wpmightyblocks' )
 		);
+
+        $options['linkSettings']['fields']['linkType'] = array(
+            'label'         => __( 'Link Type', 'wpmightyblocks' ),
+            'description'   => '',
+            'type'          => 'SelectControl',
+            'default'       => 'full',
+            'options'       => array(
+				array(
+					'value' => 'full',
+					'label' => __( 'Full Box', 'wpmightyblocks' )
+				),
+				array(
+					'value' => 'button',
+					'label' => __( 'Button', 'wpmightyblocks' )
+				)
+            )
+        );
 
         $options['linkSettings']['fields']['link'] = array(
             'label'         => __( 'Link', 'wpmightyblocks' ),
@@ -254,17 +299,89 @@ class ContentBox {
             'description'   => 'Check to restrict search engines from following this link.',
             'type'          => 'ToggleControl',
             'default'       => false
+        );
+        
+		$options['buttonSettings'] = array(
+			'type'			=> 'Section',
+			'title'			=> __( 'Button Settings', 'wpmightyblocks' )
 		);
-		
-        $options['image'] = array(
-            'label'         => __( 'Image', 'wpmightyblocks' ),
+    
+        $options['buttonSettings']['fields']['buttonSize'] = array(
+            'label'         => __( 'Button Size', 'wpmightyblocks' ),
             'description'   => '',
-            'type'          => 'MediaUpload',
-            'default'       => array(
-				'id' => '',
-				'url' => plugins_url( 'dist/images/placeholder.png', dirname(__FILE__) ),
-			),
-            'placeholder'   => __( 'Edit Image', 'wpmightyblocks' ),
+            'type'          => 'SelectControl',
+            'default'       => 's',
+            'options'       => array(
+				array(
+					'value' => 'xs',
+					'label' => __( 'Extra Small', 'wpmightyblocks' )
+                ),
+				array(
+					'value' => 's',
+					'label' => __( 'Small', 'wpmightyblocks' )
+				),
+				array(
+					'value' => 'm',
+					'label' => __( 'Medium', 'wpmightyblocks' )
+                ),
+				array(
+					'value' => 'l',
+					'label' => __( 'Large', 'wpmightyblocks' )
+                ),
+				array(
+					'value' => 'xl',
+					'label' => __( 'Extra Large', 'wpmightyblocks' )
+				),
+            )
+        );
+
+        $options['buttonSettings']['fields']['buttonAlignment'] = array(
+            'label'         => __( 'Alignment', 'wpmightyblocks' ),
+            'description'   => '',
+            'type'          => 'AlignmentControl',
+            'default'       => 'center',
+        );
+
+        $options['buttonSettings']['fields']['buttonFullwidth'] = array(
+            'label'         => __( 'Full Width Button', 'wpmightyblocks' ),
+            'description'   => 'Make button full width.',
+            'type'          => 'ToggleControl',
+            'default'       => false
+        );
+
+        $options['buttonSettings']['fields']['buttonBorderradius'] = array(
+            'label'         => __( 'Button Border Radius', 'wpmightyblocks' ),
+            'description'   => __( '(In Pixels)', 'wpmightyblocks' ),
+            'type'          => 'DimensionsControl',
+            'default'       => '3px 3px 3px 3px',
+        );
+
+        $options['buttonSettings']['fields']['buttonBackgroundColor'] = array(
+            'label'         => __( 'Button Background Color', 'wpmightyblocks' ),
+            'description'   => '',
+            'type'          => 'PanelColor',
+            'default'       => '#54595f',
+        );
+
+        $options['buttonSettings']['fields']['buttonTextColor'] = array(
+            'label'         => __( 'Button Text Color', 'wpmightyblocks' ),
+            'description'   => '',
+            'type'          => 'PanelColor',
+            'default'       => '#ffffff',
+        );
+
+        $options['buttonSettings']['fields']['buttonHoverBackgroundColor'] = array(
+            'label'         => __( 'Button Hover Background Color', 'wpmightyblocks' ),
+            'description'   => '',
+            'type'          => 'PanelColor',
+            'default'       => '#000000',
+        );
+
+        $options['buttonSettings']['fields']['buttonHoverTextColor'] = array(
+            'label'         => __( 'Button Hover Text Color', 'wpmightyblocks' ),
+            'description'   => '',
+            'type'          => 'PanelColor',
+            'default'       => '#ffffff',
         );
 
 		return $options;
