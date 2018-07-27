@@ -78,7 +78,7 @@ function DimensionsControl( { label, value, help, className, instanceId, onChang
 				/>
 				<label for={ `${id}-2` }>Bottom</label>
 			</div>
-			<div className="components-mb-dimension-control__input">
+			<div className="components-mb-dimension-control__input components-mb-dimension-control__input--last">
 				<input
 					type="text"
 					id={ `${id}-3` }
@@ -90,6 +90,7 @@ function DimensionsControl( { label, value, help, className, instanceId, onChang
 				/>
 				<label for={ `${id}-3` }>Left</label>
 			</div>
+			<div className="components-mb-dimension-control__clear" />
 		</BaseControl>
 	);
 }

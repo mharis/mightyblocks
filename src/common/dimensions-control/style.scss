@@ -16,6 +16,10 @@
     }
 }
 
-#editor .components-base-control__field :last-child input {
+#editor .components-base-control__field .components-mb-dimension-control__input--last input {
     border-right-width: 1px !important;
+}
+
+#editor .components-mb-dimension-control__clear {
+    clear: both;
 }

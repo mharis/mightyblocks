@@ -86,6 +86,10 @@ function wpMightyBlocksContentBoxTemplate( className, attributes, editing ) {
         ${ linkData }
     >
         <style type="text/css" scoped="scoped">
+        .${ className }-${ attributes['blockId'] } {
+            padding: ${ attributes['contentPadding'] };
+            border-radius: ${ attributes['contentBorderradius'] };
+        }
         ${ contentStyle }
         ${ iconStyle }
         ${ buttonStyle }

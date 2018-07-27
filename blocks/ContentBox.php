@@ -243,6 +243,19 @@ class ContentBox {
             'type'          => 'AlignmentControl',
             'default'       => 'center',
         );
+
+		$options['contentSettings']['fields']['contentPadding'] = array(
+            'label'         => __( 'Padding', 'wpmightyblocks' ),
+            'type'          => 'DimensionsControl',
+            'default'       => '0px 0px 0px 0px',
+        );
+        
+        $options['contentSettings']['fields']['contentBorderradius'] = array(
+            'label'         => __( 'Border Radius', 'wpmightyblocks' ),
+            'description'   => '',
+            'type'          => 'DimensionsControl',
+            'default'       => '0px 0px 0px 0px',
+        );
         
         $options['contentSettings']['fields']['contentBackgroundColor'] = array(
             'label'         => __( 'Background Color', 'wpmightyblocks' ),
