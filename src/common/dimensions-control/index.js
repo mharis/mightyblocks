@@ -1,7 +1,10 @@
 const {
     BaseControl,
-	withInstanceId,
 } = wp.components;
+
+const {
+	withInstanceId,
+} = wp.compose;
 
 import './style.scss';
 

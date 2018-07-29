@@ -65,8 +65,8 @@ registerBlockType( 'mightyblocks/block-contentbox', {
 
 	attributes,
 
-	edit: ( { id, attributes, className, setAttributes } ) => {
-		setAttributes( { blockId: id } );
+	edit: ( { clientId, attributes, className, setAttributes } ) => {
+		setAttributes( { blockId: clientId } );
 
 		const inspectorControls = <MightyBlocksInspectorControls
 			attributes={ attributes }

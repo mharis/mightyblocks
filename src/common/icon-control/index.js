@@ -1,7 +1,11 @@
 const {
     BaseControl,
-	withInstanceId,
 } = wp.components;
+
+const {
+	withInstanceId,
+} = wp.compose;
+
 
 const { Component } = wp.element;
 

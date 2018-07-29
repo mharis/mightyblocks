@@ -53,8 +53,8 @@ registerBlockType( 'mightyblocks/block-icon', {
 
 	attributes,
 
-	edit: function( { id, isSelected, attributes, className, setAttributes } ) {
-		setAttributes( { blockId: id } );
+	edit: function( { clientId, attributes, className, setAttributes } ) {
+		setAttributes( { blockId: clientId } );
 
 		const inspectorControls = <MightyBlocksInspectorControls
 			attributes={ attributes }
