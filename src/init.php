@@ -131,18 +131,17 @@ function mightyblocks_locate_template( $template_name ) {
 	return $template;
 }
   
-include_once plugin_dir_path( dirname( __FILE__ ) ) . '/blocks/Accordion.php';
-$Accordion = new Accordion();
+//include_once plugin_dir_path( dirname( __FILE__ ) ) . '/blocks/Accordion.php';
+//$Accordion = new Accordion();
 
 include_once plugin_dir_path( dirname( __FILE__ ) ) . '/blocks/Video.php';
 $Video = new Video();
 
 include_once plugin_dir_path( dirname( __FILE__ ) ) . '/blocks/Button.php';
-$Accordion = new Button();
+$Button = new Button();
 
 include_once plugin_dir_path( dirname( __FILE__ ) ) . '/blocks/Icon.php';
 $Icon = new Icon();
 
 include_once plugin_dir_path( dirname( __FILE__ ) ) . '/blocks/ContentBox.php';
 $ContentBox = new ContentBox();
-
