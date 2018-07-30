@@ -32,44 +32,6 @@
  * Can include things like variables and mixins
  * that are used across the project.
 */
-/**
- * #.# Styles
- *
- * CSS for both Frontend+Backend.
- */
-.wp-block-mightyblocks-block-button a {
-  display: inline-block;
-  text-decoration: none; }
-
-.wp-block-mightyblocks-block-button-size-xs {
-  font-size: 13px;
-  padding: 10px 20px; }
-
-.wp-block-mightyblocks-block-button-size-s {
-  font-size: 15px;
-  padding: 12px 24px; }
-
-.wp-block-mightyblocks-block-button-size-m {
-  font-size: 16px;
-  padding: 15px 30px; }
-
-.wp-block-mightyblocks-block-button-size-l {
-  font-size: 18px;
-  padding: 20px 40px; }
-
-.wp-block-mightyblocks-block-button-size-xl {
-  font-size: 20px;
-  padding: 25px 50px; }
-
-.wp-block-mightyblocks-block-button-fullwidth {
-  width: 100%;
-  text-align: center; }
-/**
- * #.# Common SCSS
- *
- * Can include things like variables and mixins
- * that are used across the project.
-*/
 #editor .components-mb-dimension-control__input {
   width: 25%;
   margin: 0;
@@ -522,6 +484,44 @@
 @-webkit-keyframes Select-animation-spin {
   to {
     -webkit-transform: rotate(1turn); } }
+/**
+ * #.# Common SCSS
+ *
+ * Can include things like variables and mixins
+ * that are used across the project.
+*/
+/**
+ * #.# Styles
+ *
+ * CSS for both Frontend+Backend.
+ */
+.wp-block-mightyblocks-block-button a {
+  display: inline-block;
+  text-decoration: none; }
+
+.wp-block-mightyblocks-block-button-size-xs {
+  font-size: 13px;
+  padding: 10px 20px; }
+
+.wp-block-mightyblocks-block-button-size-s {
+  font-size: 15px;
+  padding: 12px 24px; }
+
+.wp-block-mightyblocks-block-button-size-m {
+  font-size: 16px;
+  padding: 15px 30px; }
+
+.wp-block-mightyblocks-block-button-size-l {
+  font-size: 18px;
+  padding: 20px 40px; }
+
+.wp-block-mightyblocks-block-button-size-xl {
+  font-size: 20px;
+  padding: 25px 50px; }
+
+.wp-block-mightyblocks-block-button-fullwidth {
+  width: 100%;
+  text-align: center; }
 /**
  * #.# Common SCSS
  *
