@@ -1,8 +1,8 @@
 /**
- * BLOCK: Accordion
+ * BLOCK: Icon
  */
 
-import ReactHtmlParser, { processNodes, convertNodeToElement, htmlparser2 } from 'react-html-parser';
+import ReactHtmlParser from 'react-html-parser';
 
 import MightyBlocksInspectorControls from '../common/controls.js';
 import SetInitialAttributes from '../helpers/set-initial-attributes';
@@ -22,8 +22,8 @@ const {
 const { Component } = wp.element;
 
 const options = mightyblocksIcon;
-let attributes = SetInitialAttributes( options );
 
+let attributes = SetInitialAttributes( options );
 attributes['blockId'] = { type: 'string', default: '' };
 
 class MightyBlocksIconIcon extends Component {
@@ -84,30 +84,10 @@ class MightyBlocksIcon extends Component {
 		const {
 			className,
 			attributes,
-			setAttributes,
 			editing
 		} = this.props;
 
-		const template = ReactHtmlParser( wpMightyBlocksIconTemplate( className, attributes, editing ), {
-			transform: node => {
-				if ( node.type === 'tag' && node.name === 'div' ) {
-					if ( node.attribs['data-type'] === 'title' ) {
-						if ( editing === true ) {
-							return <RichText
-								tagName='span'
-								placeholder={ __( 'Add text…' ) }
-								value={ attributes['title'] }
-								onChange={ ( value ) => setAttributes( { title: value } ) }
-								formattingControls={ [ 'bold', 'italic', 'strikethrough' ] }
-								keepPlaceholderOnFocus
-							/>;
-						} else {
-							return attributes['title'];
-						}
-					}
-				}
-			}
-		} );
+		const template = ReactHtmlParser( wpMightyBlocksIconTemplate( className, attributes, editing ) );
 
 		return template;
 	}

@@ -32,8 +32,8 @@ const {
 
 
 const options = mightyblocksContentbox;
-let attributes = SetInitialAttributes( options );
 
+let attributes = SetInitialAttributes( options );
 attributes['blockId'] = { type: 'string', default: '' };
 
 class MightyBlocksContentboxIcon extends Component {
