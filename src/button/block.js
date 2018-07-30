@@ -8,7 +8,6 @@ import MightyBlocksInspectorControls from '../common/controls.js';
 import SetInitialAttributes from '../helpers/set-initial-attributes';
 
 import './style.scss';
-import './editor.scss';
 
 const { __ } = wp.i18n;
 
