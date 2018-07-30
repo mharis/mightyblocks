@@ -1,41 +1,25 @@
 /**
- * BLOCK: Accordion
+ * BLOCK: Video
  */
 
-//  Import CSS.
+import ReactHtmlParser from 'react-html-parser';
+
+import MightyBlocksInspectorControls from '../common/controls.js';
+import SetInitialAttributes from '../helpers/set-initial-attributes';
+
 import './style.scss';
-import './editor.scss';
-import ReactHtmlParser, { processNodes, convertNodeToElement, htmlparser2 } from 'react-html-parser';
 
 const { __ } = wp.i18n;
 
 const {
 	registerBlockType,
-	InspectorControls,
-	ColorPalette,
 } = wp.blocks;
-
-const {
-	ToggleControl,
-	PanelColor,
-	SelectControl,
-	TextControl
-} = wp.components;
 
 const { Component } = wp.element;
 
-let attributes = {};
 const options = mightyblocksVideo;
 
-Object.keys( options ).map( index => {
-	const option = options[ index ];
-
-	if ( option['type'] === 'PlainText' || option['type'] === 'RichText' ) {
-		return;
-	}
-
-	attributes[ index ] = { type: 'string', default: option['default'] };
-});
+let attributes = SetInitialAttributes( options );
 
 class MightyBlocksVideoIcon extends Component {
 	render() {
@@ -57,89 +41,28 @@ registerBlockType( 'mightyblocks/block-video', {
 
 	attributes,
 
-	edit: function( { focus, attributes, className, setAttributes } ) {
-		const inspectorControls = (
-			<InspectorControls>
-				<br />
-				{
-					Object.keys( options ).map( index => {
-						const option = options[ index ];
-
-						let visible = true;
-
-						if ( option['type'] === 'PlainText' || option['type'] === 'RichText' ) {
-							visible = false;
-						}
-
-						if ( option['conditions'] ) {
-							if ( option['conditions']['show'] ) {
-								Object.keys( option['conditions']['show'] ).map( showConditionIndex => {
-									const showCondition = option['conditions']['show'][ showConditionIndex ];
-
-									if ( attributes[ showCondition['field'] ] !== showCondition['value'] ) {
-										visible = false;
-									}
-								});
-							}
-						}
-
-						if ( visible === false ) {
-							return;
-						}
-						
-						if ( option['type'] === 'SelectControl' ) {
-							return <SelectControl
-								label={ option['label'] }
-								description={ option['description'] }
-								options={ option['options'] }
-								value={ attributes[ index ] }
-								onChange={ ( value ) => setAttributes( { [index]: value } ) }
-							/>;
-						} else if ( option['type'] === 'TextControl' ) {
-							return <TextControl
-								label={ option['label'] }
-								description={ option['description'] }
-								value={ attributes[ index ] }
-								onChange={ ( value ) => setAttributes( { [index]: value } ) }
-							/>;
-						} else if ( option['type'] === 'ToggleControl' ) {
-							return <ToggleControl
-								label={ option['label'] }
-								help={ option['description'] }
-								checked={ attributes[ index ] }
-								onChange={ ( value ) => setAttributes( { [index]: value } ) }
-							/>;
-						} else if ( option['type'] === 'PanelColor' ) {
-							return <PanelColor
-								title={ option['label'] }
-								colorValue={ attributes[ index ] }
-								initialOpen={ false }
-							>
-								<ColorPalette
-									label={ option['label']  }
-									value={ attributes[ index ] }
-									onChange={ ( value ) => setAttributes( { [index]: value } ) }
-								/>
-							</PanelColor>;
-						}
-					})
-				}
-			</InspectorControls>
-		);
+	edit: function( { attributes, className, setAttributes } ) {
+		const inspectorControls = <MightyBlocksInspectorControls
+			attributes={ attributes }
+			options={ options }
+			setAttributes={ setAttributes }
+		/>;
 
         return [
 			inspectorControls,
 			<MightyBlocksVideo
 				className={ className }
 				attributes={ attributes }
+				setAttributes={ setAttributes }
+				editing={ true }
 			/>
         ];
 	},
 
-	save( { attributes, className } ) {
+	save( { attributes } ) {
 		return <MightyBlocksVideo
-			className={ className }
 			attributes={ attributes }
+			editing={ false }
 		/>;
 	}
 } );
