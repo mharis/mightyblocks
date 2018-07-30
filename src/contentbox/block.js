@@ -2,16 +2,15 @@
  * BLOCK: Content Box
  */
 
-//  Import CSS.
-import './style.scss';
-import './editor.scss';
-import ReactHtmlParser, { processNodes, convertNodeToElement, htmlparser2 } from 'react-html-parser';
+import ReactHtmlParser from 'react-html-parser';
+
 import MightyBlocksInspectorControls from '../common/controls.js';
 import SetInitialAttributes from '../helpers/set-initial-attributes';
 
+import './style.scss';
+
 const {
 	__,
-	sprintf,
 } = wp.i18n;
 
 const {
@@ -21,8 +20,6 @@ const {
 const {
 	RichText,
 	MediaUpload,
-	BlockControls,
-	AlignmentToolbar,
 } = wp.editor;
 
 const {
@@ -57,7 +54,6 @@ registerBlockType( 'mightyblocks/block-contentbox', {
 		__( 'image box' )
 	],
 	anchor: true,
-
 	attributes,
 
 	edit: ( { clientId, attributes, className, setAttributes } ) => {

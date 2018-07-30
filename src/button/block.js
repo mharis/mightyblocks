@@ -43,7 +43,6 @@ registerBlockType( 'mightyblocks/block-button', {
 		__( 'button' ),
 	],
 	anchor: true,
-
 	attributes,
 
 	edit: function( { clientId, attributes, className, setAttributes } ) {
