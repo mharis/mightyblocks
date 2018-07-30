@@ -79,7 +79,7 @@ class Button {
         $options['title'] = array(
             'label'         => __( 'title', 'wpmightyblocks' ),
             'description'   => '',
-            'type'          => 'PlainText',
+            'type'          => 'RichText',
             'default'       => 'Click here',
             'placeholder'   => '',
         );
@@ -145,9 +145,7 @@ class Button {
             'label'         => __( 'Border Radius', 'wpmightyblocks' ),
             'description'   => __( '(In Pixels)', 'wpmightyblocks' ),
             'type'          => 'DimensionsControl',
-            'default'       => '3 3 3 3',
-            'unit'          => 'px',
-            'min'           => '0'
+            'default'       => '3px 3px 3px 3px',
         );
 
         $options['normalStyle'] = array(

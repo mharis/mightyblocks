@@ -102,7 +102,10 @@ class MightyBlocksButton extends Component {
 								keepPlaceholderOnFocus
 							/>;
 						} else {
-							return attributes['title'];
+							return <RichText.Content
+								tagName={ 'span' }
+								value={ attributes['title'] }
+							/>;
 						}
 					}
 				}
