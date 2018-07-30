@@ -2,7 +2,10 @@ const webfontsGenerator = require('webfonts-generator');
 
 webfontsGenerator({
     files: [
-        'src/icons/lightbulb.svg',
+        'src/icons/video.svg',
+        'src/icons/icon.svg',
+        'src/icons/contentbox.svg',
+        'src/icons/button.svg',
     ],
     dest: 'dist/',
     fontName: 'mb-icon-font',
