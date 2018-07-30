@@ -31,11 +31,6 @@ function mightyblocks_block_assets() {
 		array( 'wp-blocks' )
 	);
 
-	wp_enqueue_style(
-		'mightyblocks-icon-font',
-		plugins_url( 'dist/mb-icon-font.css', dirname( __FILE__ ) )
-	);
-
 	if ( ! is_admin() ) {
 		wp_enqueue_script(
 			'mightyblocks-block-js',
@@ -80,11 +75,6 @@ function mightyblocks_editor_assets() {
 		'mightyblocks-block-editor-css',
 		plugins_url( 'dist/blocks.editor.build.css', dirname( __FILE__ ) ),
 		array( 'wp-edit-blocks' )
-	);
-
-	wp_enqueue_style(
-		'mightyblocks-icon-font',
-		plugins_url( 'dist/mb-icon-font.css', dirname( __FILE__ ) )
 	);
 } // End function mightyblocks_editor_assets().
 

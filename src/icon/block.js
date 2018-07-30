@@ -2,12 +2,12 @@
  * BLOCK: Accordion
  */
 
-//  Import CSS.
-import './style.scss';
-import './editor.scss';
 import ReactHtmlParser, { processNodes, convertNodeToElement, htmlparser2 } from 'react-html-parser';
+
 import MightyBlocksInspectorControls from '../common/controls.js';
 import SetInitialAttributes from '../helpers/set-initial-attributes';
+
+import './style.scss';
 
 const { __ } = wp.i18n;
 
@@ -21,28 +21,22 @@ const {
 
 const { Component } = wp.element;
 
-/**
- * Register: a Gutenberg Block.
- *
- * Registers a new block provided a unique name and an object defining its
- * behavior. Once registered, the block is made editor as an option to any
- * editor interface where blocks are implemented.
- *
- * @link https://wordpress.org/gutenberg/handbook/block-api/
- * @param  {string}   name     Block name.
- * @param  {Object}   settings Block settings.
- * @return {?WPBlock}          The block, if it has been successfully
- *                             registered; otherwise `undefined`.
- */
-
 const options = mightyblocksIcon;
 let attributes = SetInitialAttributes( options );
 
 attributes['blockId'] = { type: 'string', default: '' };
 
+class MightyBlocksIconIcon extends Component {
+	render() {
+		return (
+			<svg width="20" height="20" aria-hidden="true" data-prefix="fal" data-icon="vector-square" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M486.4 128c14.14 0 25.6-11.46 25.6-25.6V25.6C512 11.46 500.54 0 486.4 0h-76.8C395.46 0 384 11.46 384 25.6V48H128V25.6C128 11.46 116.54 0 102.4 0H25.6C11.46 0 0 11.46 0 25.6v76.8C0 116.54 11.46 128 25.6 128H48v256H25.6C11.46 384 0 395.46 0 409.6v76.8C0 500.54 11.46 512 25.6 512h76.8c14.14 0 25.6-11.46 25.6-25.6V464h256v22.4c0 14.14 11.46 25.6 25.6 25.6h76.8c14.14 0 25.6-11.46 25.6-25.6v-76.8c0-14.14-11.46-25.6-25.6-25.6H464V128h22.4zM416 32h64v64h-64V32zM32 96V32h64v64H32zm64 384H32v-64h64v64zm384-64v64h-64v-64h64zm-48-32h-22.4c-14.14 0-25.6 11.46-25.6 25.6V432H128v-22.4c0-14.14-11.46-25.6-25.6-25.6H80V128h22.4c14.14 0 25.6-11.46 25.6-25.6V80h256v22.4c0 14.14 11.46 25.6 25.6 25.6H432v256z"></path></svg>
+		);
+	}
+}
+
 registerBlockType( 'mightyblocks/block-icon', {
 	title: __( 'Icon' ),
-	icon: 'migrate',
+	icon: <MightyBlocksIconIcon />,
 	category: 'common',
 	keywords: [
 		__( 'mightyblocks' ),

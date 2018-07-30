@@ -33,28 +33,23 @@ const {
 	Toolbar,
 } = wp.components;
 
-/**
- * Register: a Gutenberg Block.
- *
- * Registers a new block provided a unique name and an object defining its
- * behavior. Once registered, the block is made editor as an option to any
- * editor interface where blocks are implemented.
- *
- * @link https://wordpress.org/gutenberg/handbook/block-api/
- * @param  {string}   name     Block name.
- * @param  {Object}   settings Block settings.
- * @return {?WPBlock}          The block, if it has been successfully
- *                             registered; otherwise `undefined`.
- */
 
 const options = mightyblocksContentbox;
 let attributes = SetInitialAttributes( options );
 
 attributes['blockId'] = { type: 'string', default: '' };
 
+class MightyBlocksContentboxIcon extends Component {
+	render() {
+		return (
+			<svg width="20" height="20" aria-hidden="true" data-prefix="fal" data-icon="align-justify" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="currentColor" d="M0 76V52a6 6 0 0 1 6-6h436a6 6 0 0 1 6 6v24a6 6 0 0 1-6 6H6a6 6 0 0 1-6-6zm6 134h436a6 6 0 0 0 6-6v-24a6 6 0 0 0-6-6H6a6 6 0 0 0-6 6v24a6 6 0 0 0 6 6zm0 256h436a6 6 0 0 0 6-6v-24a6 6 0 0 0-6-6H6a6 6 0 0 0-6 6v24a6 6 0 0 0 6 6zm0-128h436a6 6 0 0 0 6-6v-24a6 6 0 0 0-6-6H6a6 6 0 0 0-6 6v24a6 6 0 0 0 6 6z"></path></svg>
+		);
+	}
+}
+
 registerBlockType( 'mightyblocks/block-contentbox', {
 	title: __( 'Content Box' ),
-	icon: 'admin-post',
+	icon: <MightyBlocksContentboxIcon />,
 	category: 'common',
 	keywords: [
 		__( 'mightyblocks' ),
