@@ -66,9 +66,10 @@ class Button {
 	}
 
 	/**
-	 * Register accordion block controls.
+	 * Register button block controls.
 	 *
-	 * Adds different input fields to allow the user to change and customize the widget settings.
+	 * Adds different input fields to allow the user to 
+     * change and customize the widget settings.
 	 *
 	 * @since 1.0.0
 	 * @access public
