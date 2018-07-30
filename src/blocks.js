@@ -9,10 +9,6 @@
  * Webpack is compiling as the input file.
  */
 
-import './notice/block.js';
-import './testimonial/block.js';
-import './tabs/block.js';
-import './accordion/block.js';
 import './video/block.js';
 import './button/block.js';
 import './icon/block.js';
