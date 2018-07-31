@@ -3,7 +3,7 @@
  * Video Block Options
  *
  * @since 	1.0.0
- * @package CGB
+ * @package MightyBlocks
  */
 
 // Exit if accessed directly.
