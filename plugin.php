@@ -1,13 +1,12 @@
 <?php
 /**
- * Plugin Name: Mighty Blocks
- * Plugin URI:
- * Description: mightyblocks — is a Gutenberg plugin created via create-guten-block.
- * Author: mharis
- * Author URI:
+ * Plugin Name: MightyBlocks
+ * Plugin URI: http://wpmightyblocks.com
+ * Description: Gutenberg blocks with super flexible customization options.
+ * Author: Haris Zulfiqar
+ * Author URI: https://hariszulfiqar.com
  * Version: 1.0.0
  * License: GPL2+
- * License URI: http://www.gnu.org/licenses/gpl-2.0.txt
  *
  * @package MightyBlocks
  */
