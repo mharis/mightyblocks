@@ -120,18 +120,15 @@ function mightyblocks_locate_template( $template_name ) {
 	// Return what we found
 	return $template;
 }
-  
-//include_once plugin_dir_path( dirname( __FILE__ ) ) . '/blocks/Accordion.php';
-//$Accordion = new Accordion();
 
 include_once plugin_dir_path( dirname( __FILE__ ) ) . '/blocks/Video.php';
-$Video = new Video();
+$MightyBlocksVideo = new MightyBlocksVideo();
 
 include_once plugin_dir_path( dirname( __FILE__ ) ) . '/blocks/Button.php';
-$Button = new Button();
+$MightyBlocksButton = new MightyBlocksButton();
 
 include_once plugin_dir_path( dirname( __FILE__ ) ) . '/blocks/Icon.php';
-$Icon = new Icon();
+$MightyBlocksIcon = new MightyBlocksIcon();
 
 include_once plugin_dir_path( dirname( __FILE__ ) ) . '/blocks/ContentBox.php';
-$ContentBox = new ContentBox();
+$MightyBlocksContentBox = new MightyBlocksContentBox();

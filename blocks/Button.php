@@ -11,7 +11,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-class Button {
+class MightyBlocksButton {
 	public function __construct() {
 		add_action( 'enqueue_block_editor_assets', array( $this, 'editor_assets' ) );
 	}

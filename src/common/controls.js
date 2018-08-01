@@ -1,10 +1,8 @@
 const {
 	BaseControl,
 	ToggleControl,
-	PanelColor,
 	RangeControl,
 	SelectControl,
-	IconButton,
 	TextControl,
 	PanelBody,
 	Button,
